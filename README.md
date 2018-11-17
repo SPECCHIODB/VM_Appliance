@@ -13,6 +13,14 @@ To develop and debug ansible roles it recomended to also have to following tools
 * Ansible
 * Vagrant
 
+Build Steps
+-----------
+The build consists of the following steps:
+1. CentOS base installation through the Kickstart file.
+2. Shell provisoner to bootstrap Ansible
+3. Ansible provisioner to provision the virtual machine
+4. Compress post-processor to compress .ova file
+
 Development
 -----------
 For testing purposes we're using vagrant and it's included ansible provisoner. This way we don't
