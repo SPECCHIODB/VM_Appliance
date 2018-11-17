@@ -7,7 +7,7 @@
     - glassfish
     - mariadb
     - gnome
-    - specchio_client
+#  - specchio_client
 
   tasks:
     - name: Install debugging and developments utils
