@@ -50,9 +50,15 @@
     ],
     "provisioners": [
 	{
+	    "type": "shell",
+	    "inline": [
+		"yum install -y epel-release",
+		"yum install -y ansible"
+	    ]
+	},
+	{
 	    "type": "ansible",
-	    "playbook_file": "../Ansible/playbook.yml",
-	    "command": "ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 /usr/bin/env ansible-playbook"
+	    "playbook_file": "playbooks/provision.yml"
 	}
     ]
 }
