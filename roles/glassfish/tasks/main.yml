@@ -1,0 +1,24 @@
+---
+
+# Reuse downloaded zip instead of downloading it on every run. (Only useful for development)
+- stat:
+    path: /tmp/glassfish.zip
+  register: glassfish_zip
+
+- name: Download glassfish zip archive
+  get_url:
+    # Saddly the glassfish developers don' provide checksums for their zips
+    url: https://download.oracle.com/glassfish/5.0/release/glassfish-5.0.zip
+    dest: /tmp/glassfish.zip
+  when: not glassfish_zip.stat.exists
+
+- name: Install unzip package
+  package:
+    name: unzip
+    state: latest
+
+- name: Unzip glassfish archive
+  unarchive:
+    remote_src: yes
+    src: /tmp/glassfish.zip
+    dest: /opt/

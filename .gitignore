@@ -1,0 +1,9 @@
+# Packer
+output*
+packer_cache/
+
+# Vagrant vm's
+.vagrant
+
+# Ansible retry files
+*.retry

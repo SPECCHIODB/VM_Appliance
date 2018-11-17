@@ -1,0 +1,11 @@
+---
+
+- name: Install mariadb package
+  package:
+    name: mariadb-server
+    state: latest
+
+- name: Enable mariadb service
+  service:
+    name: mariadb
+    enabled: yes

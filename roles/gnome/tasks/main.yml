@@ -1,0 +1,14 @@
+---
+
+- name: Install GNOME desktop environment packages
+  yum:
+    name: "@^gnome-desktop-environment"
+    state: latest
+
+- name: Install GNOME display manager package
+  package:
+    name: gdm
+    state: latest
+
+- name: Set default target to "graphical"
+  shell: systemctl set-default graphical.target

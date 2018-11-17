@@ -1,0 +1,20 @@
+---
+
+- hosts: all
+  become: yes
+  roles:
+    - oraclejdk
+    - glassfish
+    - mariadb
+    - gnome
+    - specchio_client
+
+  tasks:
+    - name: Install debugging and developments utils
+      package:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - vim
+        - curl
+        - git

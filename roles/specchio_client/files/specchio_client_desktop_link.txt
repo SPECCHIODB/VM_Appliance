@@ -1,0 +1,9 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=SPECCHIO Java Client
+Comment=Starts the SPECCHIO Java Client
+Exec=java -jar /opt/SPECCHIO/specchio-client.jar
+Icon=/opt/SPECCHIO/SPECCHIO_Icon_Mid_Res_small.jpg
+Terminal=false
+Type=Application
