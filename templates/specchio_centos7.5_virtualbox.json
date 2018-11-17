@@ -58,7 +58,7 @@
 	},
 	{
 	    "type": "ansible",
-	    "playbook_file": "playbooks/provision.yml"
+	    "playbook_file": "ansible/playbook.yml"
 	}
     ]
 }
