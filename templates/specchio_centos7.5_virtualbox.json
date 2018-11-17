@@ -52,15 +52,15 @@
 	{
 	    "type": "shell",
 	    "inline": [
-		"cd /tmp",
-		"mkdir /tmp/isomount",
-		"mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions.iso /tmp/isomount",
-		"/tmp/isomount/VBoxLinuxAdditions.run",
-		"umount isomount",
-		"rm -rf isomount /home/specchio/VBoxGuestAdditions.iso"
+		"sudo yum install -y gcc perl make kernel-devel",
+		"cd /home/specchio",
+		"mkdir isomount",
+		"sudo mount -t iso9660 -o loop VBoxGuestAdditions.iso isomount",
+		"sudo isomount/VBoxLinuxAdditions.run",
+		"sudo umount isomount",
+		"rm -rf isomount VBoxGuestAdditions.iso"
 	    ]
 	},
-
 	{
 	    "type": "shell",
 	    "inline": [
