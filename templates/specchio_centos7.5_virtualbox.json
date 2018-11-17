@@ -52,6 +52,18 @@
 	{
 	    "type": "shell",
 	    "inline": [
+		"cd /tmp",
+		"mkdir /tmp/isomount",
+		"mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions.iso /tmp/isomount",
+		"/tmp/isomount/VBoxLinuxAdditions.run",
+		"umount isomount",
+		"rm -rf isomount /home/specchio/VBoxGuestAdditions.iso"
+	    ]
+	},
+
+	{
+	    "type": "shell",
+	    "inline": [
 		"sudo yum install -y epel-release",
 		"sudo yum install -y ansible"
 	    ]
