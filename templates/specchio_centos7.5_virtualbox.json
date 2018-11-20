@@ -52,13 +52,11 @@
 	{
 	    "type": "shell",
 	    "inline": [
-		"sudo yum install -y gcc perl make kernel-devel",
-		"cd /home/specchio",
-		"mkdir isomount",
-		"sudo mount -t iso9660 -o loop VBoxGuestAdditions.iso isomount",
-		"sudo isomount/VBoxLinuxAdditions.run",
-		"sudo umount isomount",
-		"rm -rf isomount VBoxGuestAdditions.iso"
+		"sudo yum install -y bzip2 gcc perl make kernel-devel",
+		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_5.2.14.iso /media",
+		"sudo /media/VBoxLinuxAdditions.run",
+		"sudo umount /media",
+		"rm -rf isomount /home/specchio/VBoxGuestAdditions_5.2.14.iso"
 	    ]
 	},
 	{
