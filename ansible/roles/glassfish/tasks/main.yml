@@ -22,3 +22,8 @@
     remote_src: yes
     src: /tmp/glassfish.zip
     dest: /opt/
+
+- name: Copy systemd unit file
+  copy:
+    src: glassfish.service
+    dest: /lib/systemd/system/glassfish.service
