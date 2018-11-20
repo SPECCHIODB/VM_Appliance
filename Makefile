@@ -7,4 +7,4 @@ build: ## Build an CentOS virtual machine appliance
 	packer build templates/specchio_centos7.5_virtualbox.json
 
 debug: ## Build an CentOS virtual machine appliance with debug flags
-	packer build -debug -on-error ask templates/specchio_centos7.5_virtualbox.json
+	packer build -debug templates/specchio_centos7.5_virtualbox.json
