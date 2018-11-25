@@ -2,6 +2,6 @@
 
 - name: Copy SPECCHIO client jar
   unarchive:
-    copy: yes
-    src: "{{ specchio_client_jar_path }}"
+    src: "{{ specchio_client_download_url }}"
     dest: /opt/specchio_client/
+    remote_src: yes
