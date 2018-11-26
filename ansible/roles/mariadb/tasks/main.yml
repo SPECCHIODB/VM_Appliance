@@ -8,10 +8,5 @@
 - name: Enable mariadb service
   service:
     name: mariadb
-    enabled: yes
-
-- name: Start MariaDB service
-  service:
-    name: mysql
     state: started
     enabled: yes
