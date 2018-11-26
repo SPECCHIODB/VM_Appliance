@@ -2,11 +2,19 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "centos/7"
+
+  config.ssh.username = "specchio"
+  config.ssh.password = "specchio"
+
+  config.vm.box = "specchio"
+  config.vm.box_url = "file://../packer_virtualbox-iso_virtualbox.box"
+
   config.vm.provider "virtualbox" do |v|
     v.gui = true
   end
+
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"
   end
+
 end
