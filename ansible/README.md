@@ -12,3 +12,11 @@ $ vagrant up
 # To rerun the playbook
 $ vagrant provision
 ```
+
+### Database Reset
+In case you need to reset the database:
+``` sql
+DROP DATABASE specchio
+DROP DATABASE specchio_temp
+DROP USER 'sdb_admin'@'localhost';
+```
