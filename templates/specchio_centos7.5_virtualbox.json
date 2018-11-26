@@ -45,6 +45,10 @@
 		[
 		    "modifyvm", "{{.Name}}",
 		    "--vram", "128"
+		],
+		[
+		    "modifyvm", "{{.Name}}",
+		    "--clipboard", "bidirectional"
 		]
 	    ],
 	    "ssh_username": "specchio",
