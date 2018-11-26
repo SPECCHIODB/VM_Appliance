@@ -41,6 +41,10 @@
 		    "modifyvm", "{{.Name}}",
 		    "--nic2", "bridged",
 		    "--bridgeadapter2", "{{user `bridge_adapter`}}"
+		],
+		[
+		    "modifyvm", "{{.Name}}",
+		    "--vram", "128"
 		]
 	    ],
 	    "ssh_username": "specchio",
