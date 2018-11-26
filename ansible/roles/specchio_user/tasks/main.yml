@@ -12,3 +12,4 @@
     home: "{{ specchio_user_home_directory }}"
     group: specchio
     groups: wheel  # Add specchio user to sudo group
+  ignore_errors: yes
