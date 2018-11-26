@@ -1,6 +1,6 @@
 {
     "variables": {
-	    "bridge_adapter": "eno1"
+	    "bridge_adapter": "wlp2s0"
     },
     "builders": [
 	{

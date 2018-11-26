@@ -1,5 +1,10 @@
 ---
 
+- name: Install unzip
+  package:
+    name: unzip
+    state: latest
+
 - name: Install python mysql library
   package:
     name: python2-PyMySQL
@@ -15,7 +20,6 @@
     src: "{{ specchio_database_definitions_download_url }}"
     dest: "{{ specchio_database_definitions_directory }}"
     remote_src: yes
-
 
 # We only want to run the SQL scripts if the database does not exist yet.
 
