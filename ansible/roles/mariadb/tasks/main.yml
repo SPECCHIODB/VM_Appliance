@@ -10,8 +10,7 @@
     name: mariadb
     enabled: yes
 
-
-- name: Install PyMySQL python package (dependency for ansible mysql modules)
-  package:
-    name: python2-PyMySQL
-    state: latest
+#- name: Install PyMySQL python package (dependency for ansible mysql modules)
+#  package:
+#    name: python2-PyMySQL
+#    state: latest

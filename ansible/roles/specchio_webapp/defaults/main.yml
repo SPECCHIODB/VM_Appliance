@@ -1,0 +1,4 @@
+---
+
+specchio_webapp_download_url: "https://github.com/ahueni/SPECCHIO/blob/SPECCHIO_Master/pkg/specchio-webapp.war"
+specchio_webapp_directory: "/opt/specchio_server/"

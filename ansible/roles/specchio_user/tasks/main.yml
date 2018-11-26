@@ -1,0 +1,14 @@
+---
+
+- name: Add SPECCHIO group
+  group:
+    name: specchio
+    state: present
+
+- name: Add SPECCHIO user
+  user:
+    name: specchio
+    comment: SPECCHIO Spectral Information System
+    home: "{{ specchio_user_home_directory }}"
+    group: specchio
+    groups: wheel  # Add specchio user to sudo group

@@ -3,12 +3,12 @@
 - hosts: all
   become: yes
   roles:
-    - oraclejdk
-    - glassfish
-    - mariadb
-    - gnome
-#  - specchio_client
-
+    - role: glassfish
+    - role: mariadb
+    - role: gnome
+    - role: specchio_user
+    - role: specchio_client
+    - role: specchio_webapp
   tasks:
     - name: Install debugging and developments utils
       package:

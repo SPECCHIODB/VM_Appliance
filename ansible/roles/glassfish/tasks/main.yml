@@ -1,5 +1,10 @@
 ---
 
+- name: Install OpenJDK
+  package:
+    name: java-1.8.0-openjdk
+    state: latest
+
 # Reuse downloaded zip instead of downloading it on every run. (Only useful for development)
 - stat:
     path: /tmp/glassfish.zip

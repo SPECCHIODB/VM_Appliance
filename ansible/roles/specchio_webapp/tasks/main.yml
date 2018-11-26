@@ -1,0 +1,16 @@
+---
+
+- name: Install OpenJDK
+  package:
+    name: java-1.8.0-openjdk
+    state: latest
+
+- name: Create SPECCHIO webapp install directory
+  file:
+    path: "{{ specchio_webapp_directory }}"
+    state: directory
+
+- name: Download SPECCHIO webapp war
+  get_url:
+    url: "{{ specchio_webapp_download_url }}"
+    dest: "{{ specchio_webapp_directory }}"
