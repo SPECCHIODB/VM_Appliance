@@ -5,7 +5,7 @@
     name: java-1.8.0-openjdk
     state: latest
 
-- name: Install unzip and tar
+- name: Install unzip
   package:
     name: unzip
     state: latest
@@ -15,7 +15,7 @@
     path: "{{ specchio_client_directory }}"
     state: directory
 
-- name: Copy SPECCHIO client jar
+- name: Download SPECCHIO client zip
   unarchive:
     src: "{{ specchio_client_download_url }}"
     dest: /opt/specchio_client/
@@ -26,12 +26,11 @@
     path: "{{ specchio_client_user_desktop_directory }}"
   register: desktop_directory
 
-
 - name: Symlink SPECCHIO client to desktop
   template:
     src: specchio_client.desktop.j2
     dest: "{{ specchio_client_user_desktop_directory }}/SPECCHIO Java Client.desktop"
     owner: specchio
     group: specchio
-    mode: 0700
+    mode: 0711
   when: desktop_directory.stat.exists and desktop_directory.stat.isdir
