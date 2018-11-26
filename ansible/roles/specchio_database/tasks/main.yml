@@ -22,6 +22,7 @@
 - name: check if DB exists
   shell: mysql -e 'SHOW DATABASES;' | grep 'specchio'
   register: dbstatus
+  failed_when: dbstatus.rc == 2
 
 - name: Import SPECCHIO database schema
   mysql_db:
@@ -36,8 +37,8 @@
 - name: Replace sdb_admin password in SQL Script
   replace:
     path: "{{ specchio_database_definitions_directory }}/specchio-database-definition/sdb_admin_creation.sql"
-    regexp: sdb_admin_password
-    replace: "{{ specchio_database_user_password }}"
+    regexp: '(.*)sdb_admin_password(.*)$'
+    replace: '\1{{ specchio_database_user_password }}\2'
     backup: yes
   when: dbstatus.rc == 1
 
