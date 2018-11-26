@@ -1,0 +1,34 @@
+---
+
+- name: Install OpenJDK
+  package:
+    name: java-1.8.0-openjdk
+    state: latest
+
+# Reuse downloaded zip instead of downloading it on every run. (Only useful for development)
+- stat:
+    path: /tmp/glassfish5.zip
+  register: glassfish_zip
+
+- name: Download glassfish zip archive
+  get_url:
+    # Saddly the glassfish developers don' provide checksums for their zips
+    url: https://download.oracle.com/glassfish/5.0/release/glassfish-5.0.zip
+    dest: /tmp/glassfish5.zip
+  when: not glassfish_zip.stat.exists
+
+- name: Install unzip package
+  package:
+    name: unzip
+    state: latest
+
+- name: Unzip glassfish archive
+  unarchive:
+    remote_src: yes
+    src: /tmp/glassfish5.zip
+    dest: /opt/
+
+- name: Copy systemd unit file
+  copy:
+    src: glassfish.service
+    dest: /lib/systemd/system/glassfish.service

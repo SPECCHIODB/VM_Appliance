@@ -2,19 +2,23 @@
 
 - hosts: all
   become: yes
+  vars:
+    - specchio_database_user_password: 'ALSOCHANGEME'
   roles:
-    - role: glassfish
-    - role: mariadb
-    - role: gnome
-    - role: specchio_user
-    - role: specchio_client
-    - role: specchio_webapp
-  tasks:
-    - name: Install debugging and developments utils
-      package:
-        name: "{{ item }}"
-        state: latest
-      loop:
-        - vim
-        - curl
-        - git
+    - role: specchio_database
+#    - role: glassfish4
+#    - role: glassfish5
+#    - role: mariadb
+#    - role: gnome
+#    - role: specchio_user
+#    - role: specchio_client
+#    - role: specchio_webapp
+#  tasks:
+#    - name: Install debugging and developments utils
+#      package:
+#        name: "{{ item }}"
+#        state: latest
+#      loop:
+#        - vim
+#        - curl
+#        - git

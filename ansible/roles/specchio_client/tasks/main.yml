@@ -18,7 +18,7 @@
 - name: Download SPECCHIO client zip
   unarchive:
     src: "{{ specchio_client_download_url }}"
-    dest: /opt/specchio_client/
+    dest: "{{ specchio_client_directory }}"
     remote_src: yes
 
 - name: Check if "Desktop" directory of SPECCHIO user exists

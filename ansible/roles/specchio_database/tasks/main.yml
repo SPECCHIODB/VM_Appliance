@@ -1,0 +1,49 @@
+---
+
+- name: Install python mysql library
+  package:
+    name: python2-PyMySQL
+    state: latest
+
+- name: Create SPECCHIO client directory
+  file:
+    path: "{{ specchio_database_definitions_directory }}"
+    state: directory
+
+- name: Download SPECCHIO database definitions zip
+  unarchive:
+    src: "{{ specchio_database_definitions_download_url }}"
+    dest: "{{ specchio_database_definitions_directory }}"
+    remote_src: yes
+
+
+# We only want to run the SQL scripts if the database does not exist yet.
+
+- name: check if DB exists
+  shell: mysql -e 'SHOW DATABASES;' | grep 'specchio'
+  register: dbstatus
+
+- name: Import SPECCHIO database schema
+  mysql_db:
+    name: all
+    state: import
+    target: "{{ specchio_database_definitions_directory }}/specchio-database-definition/SPECCHIO_V3.2.0.sql"
+  when: dbstatus.rc == 1
+
+# Instead of using the mysql_user module to manage the database users, we use the existing SQL
+# scripts. Those might change in the future. This way we will always be up to date.
+
+- name: Replace sdb_admin password in SQL Script
+  replace:
+    path: "{{ specchio_database_definitions_directory }}/specchio-database-definition/sdb_admin_creation.sql"
+    regexp: sdb_admin_password
+    replace: "{{ specchio_database_user_password }}"
+    backup: yes
+  when: dbstatus.rc == 1
+
+- name: Create SPECCHIO database user
+  mysql_db:
+    name: all
+    state: import
+    target: "{{ specchio_database_definitions_directory }}/specchio-database-definition/sdb_admin_creation.sql"
+  when: dbstatus.rc == 1

@@ -1,0 +1,13 @@
+# /usr/lib/systemd/system/glassfish.service
+[Unit]
+Description=GlassFish Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+ExecStart=/opt/glassfish4/bin/asadmin start-domain domain1
+ExecStop=/opt/glassfish4/bin/asadmin stop-domain domain1
+
+[Install]
+WantedBy=multi-user.target
