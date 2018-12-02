@@ -6,10 +6,10 @@
     - specchio_database_user_password: 'ALSOCHANGEME'
   roles:
     - role: glassfish4
-    - role: glassfish5
     - role: mariadb
     - role: gnome
     - role: specchio_database
+    - role: specchio_client
     - role: specchio_user
     - role: specchio_client
     - role: specchio_webapp
