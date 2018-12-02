@@ -13,4 +13,7 @@ specchio_client_user: "specchio"
 specchio_client_user_home_directory: "/home/{{ specchio_client_user }}"
 
 # Path to the SPECCHIO user desktop directory.
-specchio_client_user_desktop_directory: "{{specchio_client_user_home_directory}}/Desktop/"
+specchio_client_user_desktop_directory: "{{specchio_client_user_home_directory}}/Desktop"
+
+# Path to the SPECCHIO client desktop link.
+specchio_client_desktop_link: "{{specchio_client_user_desktop_directory}}/SPECCHIO Java Client.desktop"

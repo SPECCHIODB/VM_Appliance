@@ -21,16 +21,28 @@
     dest: "{{ specchio_client_directory }}"
     remote_src: yes
 
-- name: Check if "Desktop" directory of SPECCHIO user exists
-  stat:
-    path: "{{ specchio_client_user_desktop_directory }}"
-  register: desktop_directory
+- name: Create "Desktop" directory in SPECCHIO user home
+  file:
+    path: "{{ specchio_client_user_desktop_directory }}/"
+    state: directory
+    owner: specchio
+    group: specchio
 
 - name: Symlink SPECCHIO client to desktop
   template:
     src: specchio_client.desktop.j2
-    dest: "{{ specchio_client_user_desktop_directory }}/SPECCHIO Java Client.desktop"
+    dest: "{{specchio_client_desktop_link}}"
     owner: specchio
     group: specchio
     mode: 0711
-  when: desktop_directory.stat.exists and desktop_directory.stat.isdir
+
+# This is an ugly hack to autotrust the SPECCHIO desktop link.
+# https://askubuntu.com/questions/1070057/trust-desktop-icons-without-clicking-them-manually-in-ubuntu-18-04-gnome-3
+- name: Autotrust SPECCHIO desktop link on login
+  blockinfile:
+    path: "{{specchio_client_user_home_directory}}/.bash_profile"
+    block: |
+      if [[ -f "{{specchio_client_desktop_link}}" && $(gio info "{{specchio_client_desktop_link}}" | grep "metadata::trusted") == "" ]]; then
+          gio set "{{specchio_client_desktop_link}}" "metadata::trusted" yes
+          pkill nautilus
+      fi
