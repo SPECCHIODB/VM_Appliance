@@ -1,6 +1,16 @@
 ---
 
+# Download URL from where the SPECCHIO client zip will be downloaded.
 specchio_client_download_url: "https://github.com/ahueni/SPECCHIO/blob/SPECCHIO_Master/pkg/specchio-client.zip?raw=true"
-specchio_client_directory: /opt/specchio_client/
-specchio_client_user_home_directory: "/home/specchio"
+
+# Destination directory where the SPECCHIO client will be installed.
+specchio_client_directory: "/opt/specchio_client/"
+
+# Name of the SPECCHIO user.
+specchio_client_user: "specchio"
+
+# Path to SPECCHIO user home directory.
+specchio_client_user_home_directory: "/home/{{ specchio_client_user }}"
+
+# Path to the SPECCHIO user desktop directory.
 specchio_client_user_desktop_directory: "{{specchio_client_user_home_directory}}/Desktop/"
