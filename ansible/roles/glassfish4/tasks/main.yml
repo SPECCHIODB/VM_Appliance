@@ -44,3 +44,9 @@
   copy:
     src: glassfish.service
     dest: /lib/systemd/system/glassfish.service
+
+- name: Enable glassfish4 service
+  service:
+      name: glassfish
+      state: started
+      enabled: yes
