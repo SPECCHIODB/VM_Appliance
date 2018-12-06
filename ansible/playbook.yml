@@ -4,6 +4,14 @@
   become: yes
   vars:
     - specchio_database_user_password: 'ALSOCHANGEME'
+
+  pre_tasks:
+    - name: Update yum packages
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+
   roles:
     - role: glassfish4
     - role: mariadb
@@ -13,7 +21,8 @@
     - role: specchio_user
     - role: specchio_client
     - role: specchio_webapp
-  tasks:
+
+  post_tasks:
     - name: Install debugging and developments utils
       package:
         name: "{{ item }}"
