@@ -17,7 +17,6 @@
     - role: mariadb
     - role: gnome
     - role: specchio_database
-    - role: specchio_client
     - role: specchio_user
     - role: specchio_client
     - role: specchio_webapp
