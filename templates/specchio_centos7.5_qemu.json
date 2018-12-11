@@ -1,32 +1,30 @@
 {
-    "variables": {
-	    "bridge_adapter": "wlp2s0"
-    },
     "builders": [
 	{
 	    "type": "qemu",
-	    "accelerator": "kvm",
+  	    "accelerator": "none",
+	    "net_device": "virtio-net-pci",
 	    "boot_command": [
 		    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
 	    ],
 	    "shutdown_command": "echo 'specchio'|sudo -S /sbin/halt -h -p",
-	    "qemuargs": [
-		[ "-m", "4096M" ]
-	    ],
 	    "boot_wait": "10s",
 	    "http_directory": "http",
 	    "iso_urls": [
-	    	"http://pkg.adfinis-sygroup.ch/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
+	      	"http://pkg.adfinis-sygroup.ch/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
 	    	"http://mirrors.mit.edu/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso"
 	    ],
 	    "iso_checksum_type": "sha256",
 	    "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
-	    "disk_size": 102400,
+	    "disk_size": 52400,
 	    "vm_name": "specchio-centos-7.5-vbox-x86_64",
 	    "ssh_username": "specchio",
 	    "ssh_password": "specchio",
-	    "ssh_wait_timeout": "10m"
+	    "ssh_wait_timeout": "120m",
+	    "qemu_binary": "/usr/libexec/qemu-kvm",
+	    "headless": true
 	}
+
     ],
     "provisioners": [
 	{
