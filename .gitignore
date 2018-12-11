@@ -1,6 +1,6 @@
 # Packer
 output*
-packer_cache/
+packer_*
 
 # Vagrant vm's
 .vagrant
