@@ -10,11 +10,11 @@
       yum:
         name: '*'
         state: latest
+        update_cache: yes
     - name: Install epel-release
       package:
         name: epel-release
         state: latest
-       update_cache: yes
 
   roles:
     - role: glassfish4
