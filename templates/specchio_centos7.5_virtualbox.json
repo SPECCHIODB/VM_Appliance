@@ -68,13 +68,6 @@
 	    ]
 	},
 	{
-	    "type": "shell",
-	    "inline": [
-		"sudo yum install -y epel-release",
-		"sudo yum install -y ansible"
-	    ]
-	},
-	{
 	    "type": "ansible",
 	    "playbook_file": "ansible/playbook.yml"
 	}
