@@ -20,3 +20,8 @@ The build consists of the following steps:
 2. Shell provisoner to bootstrap Ansible
 3. Ansible provisioner to provision the virtual machine
 4. Compress post-processor to compress .ova file
+
+Known Issues
+------------
+* Don't run the build as root user. Ansible will fail with an "You need to be root to perform this
+  command.". The root cause for this is unclear.
