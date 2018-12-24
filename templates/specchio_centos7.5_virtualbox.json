@@ -1,6 +1,7 @@
 {
     "variables": {
-	    "bridge_adapter": "wlp2s0"
+	    "bridge_adapter": "eno1",
+	    "vbox_version": "6.0.0"
     },
     "builders": [
 	{
@@ -14,13 +15,14 @@
 	    "iso_urls": ["https://pkg.adfinis-sygroup.ch/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso"],
 	    "iso_checksum_type": "sha256",
 	    "iso_checksum": "38d5d51d9d100fd73df031ffd6bd8b1297ce24660dc8c13a3b8b4534a4bd291c",
+	    "headless": true,
 	    "guest_os_type": "RedHat_64",
 	    "disk_size": 102400,
-	    "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
-	    "guest_additions_url": "https://download.virtualbox.org/virtualbox/5.2.14/VBoxGuestAdditions_5.2.14.iso",
-	    "guest_additions_sha256": "e149ff0876242204fe924763f9272f691242d6a6ad4538a128fb7dba770781de",
+	    "guest_additions_path": "VBoxGuestAdditions_{{user `vbox_version`}}.iso",
+	    "guest_additions_url": "https://download.virtualbox.org/virtualbox/{{user `vbox_version`}}/VBoxGuestAdditions_{{user `vbox_version`}}.iso",
+	    "guest_additions_sha256": "169efc28d82cbf2d0b0156454cc290e2fae49534b6d4adf3bac06e0fefba8fa5",
 	    "virtualbox_version_file": ".vbox_version",
-	    "vm_name": "specchio-centos-7.5-vbox-x86_64",
+	    "vm_name": "specchio-centos-7.6-vbox-x86_64",
 	    "vboxmanage": [
 		[
 		    "modifyvm",
@@ -32,7 +34,7 @@
 		    "modifyvm",
 		    "{{.Name}}",
 		    "--cpus",
-		    "2"
+		    "1"
 		],
 		[
 		    "modifyvm", "{{.Name}}",
@@ -50,7 +52,7 @@
 	    ],
 	    "ssh_username": "specchio",
 	    "ssh_password": "specchio",
-	    "ssh_wait_timeout": "500s"
+	    "ssh_wait_timeout": "30m"
 	}
     ],
     "provisioners": [
@@ -65,7 +67,7 @@
 	    "type": "shell",
 	    "inline": [
 		"sudo yum install -y bzip2 gcc perl make kernel-devel",
-		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_5.2.14.iso /media",
+		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_6.0.0.iso /media",
 		"sudo /media/VBoxLinuxAdditions.run",
 		"sudo umount /media"
 	    ]
