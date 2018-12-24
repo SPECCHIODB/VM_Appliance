@@ -57,6 +57,10 @@
     ],
     "provisioners": [
 	{
+	    "type": "ansible",
+	    "playbook_file": "ansible/playbook.yml"
+	}
+	{
 	    "type": "shell",
 	    "inline": [
 		"sudo yum install -y bzip2 gcc perl make kernel-devel",
@@ -66,10 +70,6 @@
 		"rm -rf isomount /home/specchio/VBoxGuestAdditions_5.2.14.iso"
 	    ]
 	},
-	{
-	    "type": "ansible",
-	    "playbook_file": "ansible/playbook.yml"
-	}
     ],
     "post-processors": [
 	{
