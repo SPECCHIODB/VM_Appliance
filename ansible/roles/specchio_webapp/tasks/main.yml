@@ -28,7 +28,7 @@
     dest: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
     checksum: "{{ specchio_webapp_glassfish_mysql_java_connector_tarball_checksum }}"
 
-- name: Unzip glassfish archive
+- name: Unzip glassfish mysql java connector
   unarchive:
     remote_src: yes
     src: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
