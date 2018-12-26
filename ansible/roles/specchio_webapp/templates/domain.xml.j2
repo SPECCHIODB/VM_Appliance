@@ -323,7 +323,7 @@
           <property name="password-column" value="{{ specchio_webapp_glassfish_security_realm_password_column }}"></property>
           <property name="datasource-jndi" value="{{ specchio_webapp_glassfish_jndi_name }}"></property>
           <property name="group-table" value="{{ specchio_webapp_glassfish_security_realm_group_table }}"></property>
-	  <property name="charset" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
+	  <property name="digest-algorithm" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
           <property name="user-table" value="{{ specchio_webapp_glassfish_security_realm_user_table }}"></property>
           <property name="group-name-column" value="{{ specchio_webapp_glassfish_security_realm_group_name_column }}"></property>
           <property name="digestrealm-password-enc-algorithm" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
@@ -436,7 +436,7 @@
           </protocol>
         </protocols>
         <network-listeners>
-          <network-listener protocol="http-listener-1" port="8080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp" enabled="false"></network-listener>
+          <network-listener protocol="http-listener-1" port="8080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"></network-listener>
           <network-listener protocol="http-listener-2" port="8181" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"></network-listener>
           <network-listener protocol="admin-listener" port="4848" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"></network-listener>
         </network-listeners>
