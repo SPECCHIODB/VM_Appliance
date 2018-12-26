@@ -6,6 +6,9 @@ specchio_client_download_url: "https://github.com/ahueni/SPECCHIO/blob/SPECCHIO_
 # Destination directory where the SPECCHIO client will be installed.
 specchio_client_directory: "/opt/specchio_client/"
 
+# Destination of the db_config.txt file (containing login credentials)
+specchio_client_db_config_file: "{{ specchio_client_directory }}/db_config.txt"
+
 # Name of the SPECCHIO user.
 specchio_client_user: "specchio"
 
@@ -17,3 +20,14 @@ specchio_client_user_desktop_directory: "{{specchio_client_user_home_directory}}
 
 # Path to the SPECCHIO client desktop link.
 specchio_client_desktop_link: "{{specchio_client_user_desktop_directory}}/SPECCHIO Java Client.desktop"
+
+# Default credentials for the admin user
+specchio_client_admin_password: "ALSOCHANGEME"
+specchio_client_admin_user: "sdb_admin"
+
+# Default connections information
+specchio_client_connection_protocol: "http"
+specchio_client_connection_server: "localhost"
+specchio_client_connection_port: "8080"
+specchio_client_connection_path: "/specchio_service"
+specchio_client_connection_data_source: "jdbc/specchio"

@@ -6,6 +6,7 @@
   become_method: sudo
   vars:
     - specchio_database_user_password: 'ALSOCHANGEME'
+    - specchio_client_admin_password: '{{ specchio_database_user_password }}'
 
   pre_tasks:
     - name: Update yum packages
