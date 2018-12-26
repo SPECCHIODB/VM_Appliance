@@ -60,11 +60,11 @@
     src: domain.xml.j2
     dest: "{{ specchio_webapp_glassfish_domain_configuration_file }}"
 
-- name: Deploy webapp.war to glassfish
-  command: "{{ specchio_webapp_glassfish_asadmin_file }} deploy --force {{ specchio_webapp_war }}"
-
 - name: Start and enable glassfish service
   service:
       name: glassfish
       state: started
       enabled: yes
+
+- name: Deploy webapp.war to glassfish
+  command: "{{ specchio_webapp_glassfish_asadmin_file }} deploy --force {{ specchio_webapp_war }}"
