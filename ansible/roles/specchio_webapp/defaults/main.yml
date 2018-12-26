@@ -52,7 +52,7 @@ specchio_webapp_glassfish_jdbc_connection_pool_name: "specchio_web_pool"
 specchio_webapp_glassfish_jndi_name: "jdbc/specchio"
 
 # Glassfish security realm settings
-specchio_webapp_glassfish_security_realm_name: "jdbcRealm"
+specchio_webapp_glassfish_security_realm_name: "specchioRealm"
 specchio_webapp_glassfish_security_realm_hash_function: "MD5"
 specchio_webapp_glassfish_security_realm_group_table: "specchio.specchio_user_group"
 specchio_webapp_glassfish_security_realm_group_name_column: "group_name"

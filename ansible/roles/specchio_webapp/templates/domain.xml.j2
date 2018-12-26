@@ -2,13 +2,13 @@
   <security-configurations>
     <authentication-service default="true" name="adminAuth" use-password-credential="true">
       <security-provider provider-name="adminSpc" name="spcrealm" type="LoginModule">
-        <login-module-config control-flag="sufficient" module-class="com.sun.enterprise.admin.util.AdminLoginModule" name="adminSpecialLM">
+        <login-module-config module-class="com.sun.enterprise.admin.util.AdminLoginModule" control-flag="sufficient" name="adminSpecialLM">
           <property name="config" value="server-config"></property>
           <property name="auth-realm" value="admin-realm"></property>
         </login-module-config>
       </security-provider>
       <security-provider provider-name="adminFile" name="filerealm" type="LoginModule">
-        <login-module-config control-flag="sufficient" module-class="com.sun.enterprise.security.auth.login.FileLoginModule" name="adminFileLM">
+        <login-module-config module-class="com.sun.enterprise.security.auth.login.FileLoginModule" control-flag="sufficient" name="adminFileLM">
           <property name="config" value="server-config"></property>
           <property name="auth-realm" value="admin-realm"></property>
         </login-module-config>
@@ -22,7 +22,7 @@
   </security-configurations>
   <managed-job-config></managed-job-config>
   <system-applications>
-    <application context-root="" object-type="system-admin" name="__admingui" directory-deployed="true" location="${com.sun.aas.installRootURI}/lib/install/applications/__admingui">
+    <application context-root="" object-type="system-admin" directory-deployed="true" name="__admingui" location="${com.sun.aas.installRootURI}/lib/install/applications/__admingui">
       <module name="__admingui">
         <engine sniffer="web"></engine>
         <engine sniffer="security"></engine>
@@ -44,13 +44,15 @@
       <property name="DatabaseName" value="sun-appserv-samples"></property>
       <property name="connectionAttributes" value=";create=true"></property>
     </jdbc-connection-pool>
-    <connector-connection-pool resource-adapter-name="jmsra" max-pool-size="250" steady-pool-size="1" name="jms/__defaultConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.ConnectionFactory"></connector-connection-pool>
+    <connector-connection-pool max-pool-size="250" resource-adapter-name="jmsra" steady-pool-size="1" name="jms/__defaultConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.ConnectionFactory"></connector-connection-pool>
     <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" object-type="system-all-req" jndi-name="jms/__defaultConnectionFactory"></connector-resource>
     <context-service object-type="system-all" jndi-name="concurrent/__defaultContextService"></context-service>
     <managed-executor-service object-type="system-all" jndi-name="concurrent/__defaultManagedExecutorService"></managed-executor-service>
     <managed-scheduled-executor-service object-type="system-all" jndi-name="concurrent/__defaultManagedScheduledExecutorService"></managed-scheduled-executor-service>
     <managed-thread-factory object-type="system-all" jndi-name="concurrent/__defaultManagedThreadFactory"></managed-thread-factory>
     <jdbc-connection-pool match-connections="true" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" name="{{ specchio_webapp_glassfish_jdbc_connection_pool_name }}" res-type="javax.sql.DataSource">
+      <property name="user" value="{{ specchio_webapp_database_user }}"></property>
+      <property name="password" value="{{ specchio_webapp_database_password }}"></property>
       <property name="SelfDestructOnPingSecondsLifetime" value="0"></property>
       <property name="UseUsageAdvisor" value="false"></property>
       <property name="AllowSlaveDownConnections" value="false"></property>
@@ -291,7 +293,7 @@
       <transaction-service tx-log-dir="${com.sun.aas.instanceRoot}/logs"></transaction-service>
       <batch-runtime-configuration></batch-runtime-configuration>
       <jms-service default-jms-host="default_JMS_host" type="EMBEDDED">
-        <jms-host port="${JMS_PROVIDER_PORT}" name="default_JMS_host" host="localhost"></jms-host>
+        <jms-host port="${JMS_PROVIDER_PORT}" host="localhost" name="default_JMS_host"></jms-host>
       </jms-service>
       <web-container>
         <session-config>
@@ -323,12 +325,12 @@
           <property name="password-column" value="{{ specchio_webapp_glassfish_security_realm_password_column }}"></property>
           <property name="datasource-jndi" value="{{ specchio_webapp_glassfish_jndi_name }}"></property>
           <property name="group-table" value="{{ specchio_webapp_glassfish_security_realm_group_table }}"></property>
-	  <property name="digest-algorithm" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
           <property name="user-table" value="{{ specchio_webapp_glassfish_security_realm_user_table }}"></property>
           <property name="group-name-column" value="{{ specchio_webapp_glassfish_security_realm_group_name_column }}"></property>
           <property name="digestrealm-password-enc-algorithm" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
           <property name="group-table-user-name-column" value="{{ specchio_webapp_glassfish_security_realm_group_table_user_name_column }}"></property>
           <property name="db-password" value="{{ specchio_webapp_database_password }}"></property>
+          <property name="digest-algorithm" value="{{ specchio_webapp_glassfish_security_realm_hash_function }}"></property>
           <property name="db-user" value="{{ specchio_webapp_database_user }}"></property>
           <property name="user-name-column" value="{{ specchio_webapp_glassfish_security_realm_user_name_column }}"></property>
         </auth-realm>
@@ -427,7 +429,7 @@
             <http max-connections="250" default-virtual-server="server">
               <file-cache></file-cache>
             </http>
-            <ssl ssl3-enabled="false" classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
+            <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
           </protocol>
           <protocol name="admin-listener">
             <http encoded-slash-enabled="true" max-connections="250" default-virtual-server="__asadmin">
@@ -445,7 +447,7 @@
         </transports>
       </network-config>
       <thread-pools>
-        <thread-pool name="admin-thread-pool" max-thread-pool-size="50" max-queue-size="256"></thread-pool>
+        <thread-pool name="admin-thread-pool" max-queue-size="256" max-thread-pool-size="50"></thread-pool>
         <thread-pool name="http-thread-pool"></thread-pool>
         <thread-pool name="thread-pool-1" max-thread-pool-size="200"></thread-pool>
       </thread-pools>
@@ -494,7 +496,7 @@
       </ejb-container>
       <mdb-container></mdb-container>
       <jms-service addresslist-behavior="priority" default-jms-host="default_JMS_host" type="EMBEDDED">
-        <jms-host port="${JMS_PROVIDER_PORT}" name="default_JMS_host" host="localhost"></jms-host>
+        <jms-host port="${JMS_PROVIDER_PORT}" host="localhost" name="default_JMS_host"></jms-host>
       </jms-service>
       <log-service file="${com.sun.aas.instanceRoot}/logs/server.log" log-rotation-limit-in-bytes="2000000">
         <module-log-levels></module-log-levels>
@@ -599,7 +601,7 @@
             <http default-virtual-server="server">
               <file-cache></file-cache>
             </http>
-            <ssl ssl3-enabled="false" classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
+            <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"></ssl>
           </protocol>
           <protocol name="admin-listener">
             <http max-connections="250" default-virtual-server="__asadmin">
@@ -610,7 +612,7 @@
             <http encoded-slash-enabled="true" default-virtual-server="__asadmin">
               <file-cache></file-cache>
             </http>
-            <ssl ssl3-enabled="false" classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" client-auth="want" cert-nickname="glassfish-instance" renegotiate-on-client-auth-want="false"></ssl>
+            <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" client-auth="want" cert-nickname="glassfish-instance" renegotiate-on-client-auth-want="false"></ssl>
           </protocol>
           <protocol name="admin-http-redirect">
             <http-redirect secure="true"></http-redirect>
@@ -634,7 +636,7 @@
       <thread-pools>
         <thread-pool name="http-thread-pool"></thread-pool>
         <thread-pool name="thread-pool-1" max-thread-pool-size="200"></thread-pool>
-        <thread-pool name="admin-thread-pool" max-thread-pool-size="50" max-queue-size="256"></thread-pool>
+        <thread-pool name="admin-thread-pool" max-queue-size="256" max-thread-pool-size="50"></thread-pool>
       </thread-pools>
       <group-management-service>
         <failure-detection></failure-detection>
