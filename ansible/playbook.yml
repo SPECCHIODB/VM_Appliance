@@ -20,7 +20,6 @@
         state: latest
 
   roles:
-    - role: glassfish4
     - role: mariadb
     - role: gnome
     - role: specchio_database
