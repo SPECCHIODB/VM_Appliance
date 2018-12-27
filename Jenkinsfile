@@ -5,6 +5,7 @@ pipeline {
         stage('Preparation') {
             steps {
                git branch: 'master', url: 'https://github.com/SPECCHIODB/VM_Appliance.git'
+               sh 'rm -rf output-virtualbox-iso/'
             }
         }
         stage('Build') {
