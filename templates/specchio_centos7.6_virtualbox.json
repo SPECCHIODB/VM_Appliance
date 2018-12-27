@@ -5,7 +5,8 @@
     },
     "builders": [
 	{
-	    "type": "virtualbox-iso",
+		"type": "virtualbox-iso",
+		"format": "ova",
 	    "boot_command": [
 		    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
 	    ],
