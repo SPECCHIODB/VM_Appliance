@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'packer build -var "bridge_adapter=eth0" templates/specchio_centos7.6_virtualbox.json'
+                sh '/usr/local/bin/packer build -var "bridge_adapter=eth0" templates/specchio_centos7.6_virtualbox.json'
             }
         }
         stage('Upload Archive') {
