@@ -21,6 +21,19 @@
     dest: "{{ specchio_client_directory }}"
     remote_src: yes
 
+- name: Copy SPECCHIO CA certificate
+  copy:
+    src: specchio_ca.crt
+    dest: "{{ specchio_client_ca_crt_file }}"
+
+- name: Add SPECCHIO CA cert to keystore
+  java_cert:
+    cert_path: "{{ specchio_client_ca_crt_file }}"
+    cert_alias: "{{ specchio_client_ca_crt_alias }}"
+    keystore_path: "{{ specchio_client_keystore_file }}"
+    keystore_pass: "{{ specchio_client_keystore_password }}"
+    state: present
+
 - name: Create "Desktop" directory in SPECCHIO user home
   file:
     path: "{{ specchio_client_user_desktop_directory }}/"

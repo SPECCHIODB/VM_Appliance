@@ -1,0 +1,39 @@
+---
+
+- name: Install OpenJDK
+  package:
+    name: java-1.8.0-openjdk
+    state: latest
+
+- name: Install unzip package
+  package:
+    name: unzip
+    state: latest
+
+- name: Download glassfish zip archive
+  get_url:
+    url: "{{ specchio_webapp_glassfish_download_url }}"
+    dest: "/tmp/{{ specchio_webapp_glassfish_zip_name }}"
+    checksum: "{{ specchio_webapp_glassfish_zip_checksum }}"
+
+- name: Unzip glassfish archive
+  unarchive:
+    remote_src: yes
+    src: "/tmp/{{ specchio_webapp_glassfish_zip_name }}"
+    dest: /opt/
+
+- name: Render glassfish domain configuration
+  template:
+    src: domain.xml.j2
+    dest: "{{ specchio_webapp_glassfish_domain_configuration_file }}"
+
+- name: Copy glassfish systemd unit file
+  copy:
+    src: glassfish.service
+    dest: "{{ specchio_webapp_glassfish_systemd_unit_file }}"
+
+- name: Start and enable glassfish service
+  service:
+      name: glassfish
+      state: started
+      enabled: yes

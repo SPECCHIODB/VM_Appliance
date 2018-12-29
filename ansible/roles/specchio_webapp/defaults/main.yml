@@ -27,8 +27,11 @@ specchio_webapp_glassfish_domain_directory: "{{ specchio_webapp_glassfish_direct
 # Directory for domain external libraries
 specchio_webapp_glassfish_domain_external_libraries_directory: "{{ specchio_webapp_glassfish_domain_directory }}/lib/ext/"
 
+# Path to the glassfish domain configuration directory
+specchio_webapp_glassfish_domain_configuration_directory: "{{ specchio_webapp_glassfish_domain_directory }}/config/"
+
 # Path to the glassfish domain configuration file
-specchio_webapp_glassfish_domain_configuration_file: "{{ specchio_webapp_glassfish_domain_directory }}/config/domain.xml"
+specchio_webapp_glassfish_domain_configuration_file: "{{ specchio_webapp_glassfish_domain_configuration_directory }}/domain.xml"
 
 # Path to the glassfish unit file
 specchio_webapp_glassfish_systemd_unit_file: "/lib/systemd/system/glassfish.service"
@@ -67,3 +70,27 @@ specchio_webapp_database_host: "localhost"
 specchio_webapp_database_name: "specchio"
 specchio_webapp_database_user: "sdb_admin"
 specchio_webapp_database_password: "ALSOCHANGEME"
+
+# Password of the glassfish domain keystore
+specchio_webapp_keystore_file: "{{ specchio_webapp_glassfish_domain_configuration_directory }}/keystore.jks"
+specchio_webapp_keystore_keypass: "changeit"
+specchio_webapp_keystore_storepass: "changeit"
+specchio_webapp_keystore_alias: "specchio_trust"
+
+# Path and password of the cacerts keystore
+specchio_webapp_cacerts_file: "{{ specchio_webapp_glassfish_domain_configuration_directory }}/cacerts.jks"
+specchio_webapp_cacerts_storepass: "changeit"
+
+# Location of where the server certificate and csr will stored outside the keystore (as copies)
+specchio_webapp_server_csr_file: "{{ specchio_webapp_glassfish_directory }}/specchio_server.csr"
+specchio_webapp_server_crt_file: "{{ specchio_webapp_glassfish_directory }}/specchio_server.crt"
+specchio_webapp_server_crt_alias: "s1as"
+
+# Path where the SPECCHIO CA cert will be stored
+specchio_webapp_ca_crt_file: "{{ specchio_webapp_glassfish_directory }}/specchio_ca.crt"
+specchio_webapp_ca_crt_alias: "specchio_trust"
+
+# Path where the SPECCHIO CA PKCS12 (incl. private key) will be stored
+specchio_webapp_ca_pkcs12_keystore_file: "{{ specchio_webapp_glassfish_directory }}/specchio_ca.p12"
+specchio_webapp_ca_pkcs12_keystore_password: "changeit"
+specchio_webapp_ca_pkcs12_keystore_alias: "specchio_trust"

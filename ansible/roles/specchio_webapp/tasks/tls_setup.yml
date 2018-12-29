@@ -1,0 +1,83 @@
+---
+
+- name: Copy SPECCHIO CA certficats and PKCS12 keystore
+  copy:
+    src: "{{ item }}"
+    dest: "{{ specchio_webapp_glassfish_directory }}"
+  loop:
+    - specchio_ca.crt
+    - specchio_ca.p12
+
+- name: Add SPECCHIO CA cert to cacerts
+  java_cert:
+    cert_path: "{{ specchio_webapp_ca_crt_file }}"
+    cert_alias: "{{ specchio_webapp_ca_crt_alias }}"
+    keystore_path: "{{ specchio_webapp_cacerts_file }}"
+    keystore_pass: "{{ specchio_webapp_cacerts_storepass }}"
+    state: present
+
+- name: Import SPECCHIO CA PKCS12 keystore into glassfish keystore
+  java_cert:
+    pkcs12_path: "{{ specchio_webapp_ca_pkcs12_keystore_file }}"
+    pkcs12_password: "{{ specchio_webapp_ca_pkcs12_keystore_password }}"
+    pkcs12_alias: "{{ specchio_webapp_ca_pkcs12_keystore_alias }}"
+    keystore_path: "{{ specchio_webapp_keystore_file }}"
+    keystore_pass: "{{ specchio_webapp_keystore_storepass }}"
+    cert_alias: "{{ specchio_webapp_ca_crt_alias }}"
+    state: present
+
+- name: Delete existing certificates in keystore
+  shell: |
+    keytool -delete \
+        -alias {{ item }} \
+        -keystore {{ specchio_webapp_keystore_file }} \
+        -keypass {{ specchio_webapp_keystore_keypass }} \
+        -storepass {{ specchio_webapp_keystore_storepass }}
+  ignore_errors: yes
+  loop:
+    - s1as
+    - glassfish-instance
+
+- name: Generate server key
+  shell: |
+    keytool -genkey \
+        -keyalg RSA \
+        -keysize 2048 \
+        -sigalg SHA256WithRSA \
+        -keystore {{ specchio_webapp_keystore_file }} \
+        -keypass {{ specchio_webapp_keystore_keypass }} \
+        -storepass {{ specchio_webapp_keystore_storepass }} \
+        -validity 3650 \
+        -ext SAN=dns:localhost,ip:127.0.0.1 \
+        -alias {{ specchio_webapp_server_crt_alias }} \
+        -dname "cn=localhost"
+
+- name: Generate server certificate signing request
+  shell: |
+    keytool -certreq \
+        -keystore {{ specchio_webapp_keystore_file }} \
+        -keypass {{ specchio_webapp_keystore_keypass }} \
+        -storepass {{ specchio_webapp_keystore_storepass }} \
+        -alias {{ specchio_webapp_server_crt_alias }} > {{ specchio_webapp_server_csr_file }}
+
+- name: Generate server certificate
+  shell: |
+    keytool -gencert \
+        -keystore {{ specchio_webapp_keystore_file }} \
+        -keypass {{ specchio_webapp_keystore_keypass }} \
+        -storepass {{ specchio_webapp_keystore_storepass }} \
+        -alias {{ specchio_webapp_ca_crt_alias }} \
+        -rfc \
+        -validity 3650 \
+        -ext SAN=dns:localhost,ip:127.0.0.1 \
+        -infile {{ specchio_webapp_server_csr_file }} \
+        -outfile {{ specchio_webapp_server_crt_file }}
+
+- name: Import server certificate
+  shell: |
+    keytool -import \
+        -alias {{ specchio_webapp_server_crt_alias }} \
+        -keystore {{ specchio_webapp_keystore_file }} \
+        -keypass {{ specchio_webapp_keystore_keypass }} \
+        -storepass {{ specchio_webapp_keystore_storepass }} \
+        -file {{ specchio_webapp_server_crt_file }}

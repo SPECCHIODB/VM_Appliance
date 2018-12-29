@@ -26,8 +26,14 @@ specchio_client_admin_password: "ALSOCHANGEME"
 specchio_client_admin_user: "sdb_admin"
 
 # Default connections information
-specchio_client_connection_protocol: "http"
+specchio_client_connection_protocol: "https"
 specchio_client_connection_server: "localhost"
-specchio_client_connection_port: "8080"
+specchio_client_connection_port: "8181"
 specchio_client_connection_path: "/specchio_service"
 specchio_client_connection_data_source: "jdbc/specchio"
+
+# SPECCHIO CA certificates
+specchio_client_ca_crt_file: "{{ specchio_client_directory }}/specchio_ca.crt"
+specchio_client_ca_crt_alias: "specchio_trust_ca"
+specchio_client_keystore_file: "{{ specchio_client_directory }}/specchio.keystore"
+specchio_client_keystore_password: "specchio"
