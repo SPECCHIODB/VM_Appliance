@@ -5,8 +5,11 @@
   become_user: root
   become_method: sudo
   vars:
-    - specchio_database_user_password: 'ALSOCHANGEME'
-    - specchio_client_admin_password: '{{ specchio_database_user_password }}'
+    # TODO: Extract into Jenkins credentials
+    - specchio_database_password:           'ALSOCHANGEME'
+    - specchio_webapp_database_password:    '{{ specchio_database_password }}'
+    - specchio_database_user_password:      '{{ specchio_database_password }}'
+    - specchio_client_admin_password:       '{{ specchio_database_password }}'
 
   pre_tasks:
     - name: Update yum packages
