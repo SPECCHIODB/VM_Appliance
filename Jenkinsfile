@@ -10,7 +10,15 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh '/usr/local/bin/packer build -var "bridge_adapter=eth0" templates/specchio_centos7.6_virtualbox.json'
+                withCredentials([
+                    certificate(keystoreVariable: 'MY_KEYSTORE',
+                        aliasVariable: 'KEYSTORE_ALIAS',
+                        passwordVariable: 'KEYSTORE_PASSWORD',
+                        credentialsId: 'specchio_trust')])
+                {
+                    sh 'echo $KEYSTORE_ALIAS $KEYSTORE_PASSWORD'
+                    sh '/usr/local/bin/packer build -var "bridge_adapter=eth0" templates/specchio_centos7.6_virtualbox.json'
+                }
             }
         }
         stage('Upload Archive') {
