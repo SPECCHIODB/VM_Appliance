@@ -10,7 +10,7 @@
     name: python2-PyMySQL
     state: latest
 
-- name: Create SPECCHIO client directory
+- name: Create SPECCHIO database schema directory
   file:
     path: "{{ specchio_database_definitions_directory }}"
     state: directory
