@@ -40,13 +40,18 @@ specchio_webapp_glassfish_systemd_unit_file: "/lib/systemd/system/glassfish.serv
 specchio_webapp_glassfish_zip_checksum: "sha256:3edc5fc72b8be241a53eae83c22f274479d70e15bdfba7ba2302da5260f23e9d"
 
 # Download url for the specchio-webapp.war
-specchio_webapp_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/client/build/distributions/specchio-client-3.3.0.zip"
+specchio_webapp_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/webapp/build/distributions/specchio-webapp.zip"
 
-# Directory where to place the webapp
-specchio_webapp_directory: "/opt/specchio_webapp/"
+# Where to extract the zip archive
+specchio_webapp_extraction_directory: "/opt/SPECCHIO"
+
+# Directory where extracted webapp is stored
+specchio_webapp_directory: "{{ specchio_webapp_extraction_directory }}/specchio-webapp"
+
+specchio_webapp_sql_directory: "{{ specchio_webapp_directory }}/mysql"
 
 # Path to webapp war
-specchio_webapp_war: "{{ specchio_webapp_directory }}/specchio-webapp.war"
+specchio_webapp_war: "{{ specchio_webapp_directory }}/webapp-3.3.0.war"
 
 # Name of the JDBC connectin pool
 specchio_webapp_glassfish_jdbc_connection_pool_name: "specchio_web_pool"
@@ -65,6 +70,7 @@ specchio_webapp_glassfish_security_realm_password_column: "password"
 specchio_webapp_glassfish_security_realm_user_name_column: "user"
 
 # Database connection information
+specchio_webapp_database_install: true
 specchio_webapp_database_port: "3306"
 specchio_webapp_database_host: "localhost"
 specchio_webapp_database_name: "specchio"

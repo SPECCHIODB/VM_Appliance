@@ -1,12 +1,12 @@
 ---
 
-- name: Create SPECCHIO webapp install directory
+- name: Create SPECCHIO extraction directory
   file:
-    path: "{{ specchio_webapp_directory }}"
+    path: "{{ specchio_webapp_extraction_directory }}"
     state: directory
 
 - name: Download SPECCHIO client zip
   unarchive:
     src: "{{ specchio_webapp_download_url }}"
-    dest: "{{ specchio_webapp_directory }}"
+    dest: "{{ specchio_webapp_extraction_directory }}"
     remote_src: yes

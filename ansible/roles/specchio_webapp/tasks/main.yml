@@ -1,5 +1,6 @@
 ---
 
+- include: database.yml
 - include: glassfish.yml
 - include: java_mysql_connector.yml
 - include: specchio_webapp.yml

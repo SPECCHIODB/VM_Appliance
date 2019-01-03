@@ -1,5 +1,0 @@
----
-
-specchio_database_definitions_download_url: https://github.com/ahueni/SPECCHIO/raw/SPECCHIO_Master/pkg/specchio-database-definition.zip
-specchio_database_definitions_directory: /opt/specchio_database_definitions
-specchio_database_user_password: CHANGEME

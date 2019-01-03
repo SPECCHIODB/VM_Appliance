@@ -36,20 +36,21 @@
     - name: Set default target to "graphical"
       shell: systemctl set-default graphical.target
 
-    - name: Install mariadb package
-      package:
-        name: mariadb-server
-        state: latest
+    - name: Add SPECCHIO group
+      group:
+        name: specchio
+        state: present
 
-    - name: Enable mariadb service
-      service:
-        name: mariadb
-        state: started
-        enabled: yes
+    - name: Add SPECCHIO user
+      user:
+        name: specchio
+        comment: SPECCHIO Spectral Information System
+        home: /home/specchio
+        group: specchio
+        groups: wheel  # Add specchio user to sudo group
+      ignore_errors: yes
 
   roles:
-    - role: specchio_database
-    - role: specchio_user
     - role: specchio_client
     - role: specchio_webapp
 

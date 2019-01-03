@@ -1,10 +1,13 @@
 ---
 
 # Download URL from where the SPECCHIO client zip will be downloaded.
-specchio_client_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/client/build/distributions/specchio-client-3.3.0.zip"
+specchio_client_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/client/build/distributions/specchio-client.zip"
 
-# Destination directory where the SPECCHIO client will be installed.
-specchio_client_directory: "/opt/specchio_client/"
+# Directory where the client should be extracted to
+specchio_client_extraction_directory: "/opt/SPECCHIO"
+
+# Destination directory where the SPECCHIO client was extracted
+specchio_client_directory: "{{ specchio_client_extraction_directory }}/specchio-client/"
 
 # Destination of the db_config.txt file (containing login credentials)
 specchio_client_db_config_file: "{{ specchio_client_directory }}/db_config.txt"

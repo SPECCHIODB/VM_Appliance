@@ -10,15 +10,15 @@
     name: unzip
     state: latest
 
-- name: Create SPECCHIO client directory
+- name: Create SPECCHIO client extraction directory
   file:
-    path: "{{ specchio_client_directory }}"
+    path: "{{ specchio_client_extraction_directory }}"
     state: directory
 
 - name: Download SPECCHIO client zip
   unarchive:
     src: "{{ specchio_client_download_url }}"
-    dest: "{{ specchio_client_directory }}"
+    dest: "{{ specchio_client_extraction_directory }}"
     remote_src: yes
 
 - name: Copy SPECCHIO CA certificate
