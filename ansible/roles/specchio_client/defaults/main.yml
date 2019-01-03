@@ -1,7 +1,7 @@
 ---
 
 # Download URL from where the SPECCHIO client zip will be downloaded.
-specchio_client_download_url: "https://github.com/ahueni/SPECCHIO/blob/SPECCHIO_Master/pkg/specchio-client.zip?raw=true"
+specchio_client_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/client/build/distributions/specchio-client-3.3.0.zip"
 
 # Destination directory where the SPECCHIO client will be installed.
 specchio_client_directory: "/opt/specchio_client/"

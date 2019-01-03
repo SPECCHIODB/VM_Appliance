@@ -5,7 +5,8 @@
     path: "{{ specchio_webapp_directory }}"
     state: directory
 
-- name: Download SPECCHIO webapp war
-  get_url:
-    url: "{{ specchio_webapp_download_url }}"
+- name: Download SPECCHIO client zip
+  unarchive:
+    src: "{{ specchio_webapp_download_url }}"
     dest: "{{ specchio_webapp_directory }}"
+    remote_src: yes
