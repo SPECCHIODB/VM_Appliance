@@ -17,14 +17,37 @@
         name: '*'
         state: latest
         update_cache: yes
+
     - name: Install epel-release
       package:
         name: epel-release
         state: latest
 
+    - name: Install GNOME desktop environment packages
+      yum:
+        name: "@^gnome-desktop-environment"
+        state: latest
+
+    - name: Install GNOME display manager package
+      package:
+        name: gdm
+        state: latest
+
+    - name: Set default target to "graphical"
+      shell: systemctl set-default graphical.target
+
+    - name: Install mariadb package
+      package:
+        name: mariadb-server
+        state: latest
+
+    - name: Enable mariadb service
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+
   roles:
-    - role: mariadb
-    - role: gnome
     - role: specchio_database
     - role: specchio_user
     - role: specchio_client
