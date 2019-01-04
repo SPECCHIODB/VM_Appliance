@@ -11,6 +11,10 @@
     - specchio_client_admin_password:       '{{ specchio_database_password }}'
 
   pre_tasks:
+
+    - selinux:
+      state: disabled
+
     - name: Update yum packages
       yum:
         name: '*'
