@@ -1,6 +1,6 @@
 ---
 
-- name: Copy SPECCHIO CA certficats and PKCS12 keystore
+- name: Copy SPECCHIO CA certficate and PKCS12 keystore
   copy:
     src: "{{ item }}"
     dest: "{{ specchio_webapp_glassfish_directory }}"
