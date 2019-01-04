@@ -12,8 +12,9 @@
 
   pre_tasks:
 
-    - selinux:
-      state: disabled
+    - name: Disable SELinux
+      selinux:
+        state: disabled
 
     - name: Update yum packages
       yum:
