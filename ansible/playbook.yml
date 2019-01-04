@@ -42,6 +42,7 @@
       ignore_errors: yes
 
   roles:
+    - role: specchio_backup_tool
     - role: specchio_client
     - role: specchio_webapp
 

@@ -1,0 +1,16 @@
+---
+
+- name: Install zenity
+  package:
+    name: zenity
+    state: latest
+
+- name: Create link on desktop
+  copy:
+    src: specchio_backup_tool.sh
+    dest: /usr/local/bin/
+
+- name: Create link on desktop
+  copy:
+    src: specchio_backup_tool.desktop
+    dest: "/home/specchio/Desktop/SPECCHIO Backup Tool"
