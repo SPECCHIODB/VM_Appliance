@@ -38,9 +38,16 @@
 		    "1"
 		],
 		[
-		    "modifyvm", "{{.Name}}",
-		    "--nic2", "bridged",
-		    "--bridgeadapter2", "{{user `bridge_adapter`}}"
+		    "modifyvm",
+		    "{{.Name}}",
+		    "--natpf1",
+		    "specchio_http,tcp,,8080,,8080"
+		],
+		[
+		    "modifyvm",
+		    "{{.Name}}",
+		    "--natpf1",
+		    "specchio_https,tcp,,8181,,8181"
 		],
 		[
 		    "modifyvm", "{{.Name}}",
