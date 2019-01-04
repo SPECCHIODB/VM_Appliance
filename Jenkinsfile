@@ -17,7 +17,7 @@ pipeline {
                         credentialsId: 'specchio_trust')])
                 {
                     sh 'echo $KEYSTORE_ALIAS $KEYSTORE_PASSWORD'
-                    sh '/usr/local/bin/packer build templates/specchio_centos7.6_virtualbox.json'
+                    sh '/usr/local/bin/packer build -timestamp-ui templates/specchio_centos7.6_virtualbox.json'
                 }
             }
         }
