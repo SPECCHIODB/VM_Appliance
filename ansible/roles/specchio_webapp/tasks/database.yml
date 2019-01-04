@@ -13,7 +13,7 @@
 
 - name: Install python mysql library
   package:
-    name: python2-PyMySQL
+    name: MySQL-python
     state: latest
 
 # We only want to run the SQL scripts if the database does not exist yet.
