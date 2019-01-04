@@ -40,3 +40,12 @@ specchio_client_ca_crt_file: "{{ specchio_client_directory }}/specchio_ca.crt"
 specchio_client_ca_crt_alias: "specchio_trust_ca"
 specchio_client_keystore_file: "{{ specchio_client_directory }}/specchio.keystore"
 specchio_client_keystore_password: "specchio"
+
+# Base download path for the SPECCHIO guides
+specchio_client_guide_download_url: "https://github.com/SPECCHIODB/Guides/raw/master"
+specchio_client_guide_directory: "{{specchio_client_user_desktop_directory}}/Guides"
+specchio_client_guide_artifact_list:
+  - SPECCHIO_VM.pdf
+  - SPECCHIO_ReleaseNotes.pdf
+  - SPECCHIO_Tutorial.pdf
+  - SPECCHIO_UserGuide.pdf

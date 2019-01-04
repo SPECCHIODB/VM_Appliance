@@ -67,3 +67,16 @@
           gio set "{{specchio_client_desktop_link}}" "metadata::trusted" yes
           pkill nautilus
       fi
+
+- name: Ensure "Guides" directory exists
+  file:
+    path: "{{ specchio_client_guide_directory }}/"
+    state: directory
+    owner: specchio
+    group: specchio
+
+- name: Download SPECCHIO guides
+  get_url:
+    url: "{{ specchio_client_guide_download_url }}/{{ item }}"
+    dest: "{{ specchio_client_guide_directory }}/"
+  loop: "{{ specchio_client_guide_artifact_list }}"
