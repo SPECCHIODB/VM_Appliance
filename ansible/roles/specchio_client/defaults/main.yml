@@ -7,7 +7,7 @@ specchio_client_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSucces
 specchio_client_extraction_directory: "/opt/SPECCHIO"
 
 # Destination directory where the SPECCHIO client was extracted
-specchio_client_directory: "{{ specchio_client_extraction_directory }}/specchio-client/"
+specchio_client_directory: "{{ specchio_client_extraction_directory }}/specchio-client"
 
 # Destination of the db_config.txt file (containing login credentials)
 specchio_client_db_config_file: "{{ specchio_client_directory }}/db_config.txt"
