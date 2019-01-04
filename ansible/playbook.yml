@@ -59,6 +59,9 @@
     - name: Set default target to "graphical"
       shell: systemctl set-default graphical.target
 
+    - name: Change size of nautilus icons
+      shell: dbus-launch gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small'
+
     - name: Install debugging and developments utils
       package:
         name: "{{ item }}"
