@@ -5,6 +5,13 @@
     name: zenity
     state: latest
 
+- name: Create "Desktop" directory in SPECCHIO user home
+  file:
+    path: /home/specchio/Desktop
+    state: directory
+    owner: specchio
+    group: specchio
+
 - name: Create link on desktop
   copy:
     src: specchio_backup_tool.sh
