@@ -12,12 +12,18 @@
     owner: specchio
     group: specchio
 
-- name: Create link on desktop
+- name: Copy SPECCHIO Backup Tool script
   copy:
     src: specchio_backup_tool.sh
     dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Create link on desktop
   copy:
     src: specchio_backup_tool.desktop
     dest: "/home/specchio/Desktop/SPECCHIO Backup Tool"
+    owner: specchio
+    group: specchio
+    mode: 0755
