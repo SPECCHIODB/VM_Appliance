@@ -12,6 +12,10 @@
 
   pre_tasks:
 
+    - name: Set hostname
+      hostname:
+        name: specchio
+
     - name: Disable SELinux
       selinux:
         state: disabled
