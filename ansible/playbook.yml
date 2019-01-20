@@ -74,3 +74,14 @@
     - role: specchio_backup_tool
     - role: specchio_client
     - role: specchio_webapp
+
+  post_tasks:
+
+    - name: Reboot the VM
+      reboot:
+
+    - name: Trust desktop links
+      shell: "dbus-launch gio set  {{ item | quote }} metadata::trusted yes"
+      loop:
+        - "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop"
+        - "/home/specchio/Desktop/SPECCHIO Java Client.desktop"

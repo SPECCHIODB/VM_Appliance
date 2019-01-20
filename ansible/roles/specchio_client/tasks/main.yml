@@ -47,10 +47,7 @@
     dest: "{{ specchio_client_desktop_link }}"
     owner: specchio
     group: specchio
-    mode: 0711
-
-- name: Trust desktop link
-  shell: "dbus-launch gio set {{ specchio_client_desktop_link }} 'metadata::trusted' yes"
+    mode: 0755
 
 - name: Create db_config.txt
   template:
