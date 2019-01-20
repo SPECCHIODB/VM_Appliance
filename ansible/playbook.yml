@@ -45,13 +45,6 @@
         groups: wheel  # Add specchio user to sudo group
       ignore_errors: yes
 
-  roles:
-    - role: specchio_backup_tool
-    - role: specchio_client
-    - role: specchio_webapp
-
-  post_tasks:
-
     - name: Install GNOME desktop environment packages
       yum:
         name: "@^gnome-desktop-environment"
@@ -76,3 +69,8 @@
         - vim
         - curl
         - git
+
+  roles:
+    - role: specchio_backup_tool
+    - role: specchio_client
+    - role: specchio_webapp
