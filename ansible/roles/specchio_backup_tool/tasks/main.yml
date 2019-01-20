@@ -23,7 +23,10 @@
 - name: Create link on desktop
   copy:
     src: specchio_backup_tool.desktop
-    dest: "/home/specchio/Desktop/SPECCHIO Backup Tool"
+    dest: "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop"
     owner: specchio
     group: specchio
     mode: 0755
+
+- name: Trust desktop link
+  shell: dbus-launch gio set "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop" "metadata::trusted" yes
