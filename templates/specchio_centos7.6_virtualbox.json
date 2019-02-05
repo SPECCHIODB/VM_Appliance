@@ -60,7 +60,7 @@
 	    ],
 	    "ssh_username": "specchio",
 	    "ssh_password": "specchio",
-	    "ssh_wait_timeout": "30m"
+	    "ssh_wait_timeout": "60m"
 	}
     ],
     "provisioners": [
