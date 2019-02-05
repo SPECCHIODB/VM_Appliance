@@ -70,18 +70,34 @@
         - curl
         - git
 
+    # This is an ugly hack to autotrust the SPECCHIO desktop link.
+    # https://askubuntu.com/questions/1070057/trust-desktop-icons-without-clicking-them-manually-in-ubuntu-18-04-gnome-3
+    - name: Autotrust SPECCHIO desktop link on login
+      blockinfile:
+        path: "{{specchio_client_user_home_directory}}/.bash_profile"
+        block: |
+          if [ -z "$SSH_CLIENT" ] || [ -z "$SSH_TTY" ]; then
+              declare -a LINKS=(
+                  "/home/specchio/Desktop/SPECCHIO Java Client.desktop"
+                  "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop"
+              )
+
+              TRIGGER_RELOAD=0
+
+              for LINK in "${LINKS[@]}"; do
+                  if [[ -f "${LINK}" && $(gio info "${LINK}" | grep "metadata::trusted") == "" ]]; then
+                      echo "Trust ${LINK}"
+                      gio set "${LINK}" "metadata::trusted" yes
+                      TRIGGER_RELOAD=1
+                  fi
+              done
+
+              if [[ $TRIGGER_RELOAD -eq 1 ]]; then
+                    pkill nautilus
+              fi
+          fi
+
   roles:
     - role: specchio_backup_tool
     - role: specchio_client
     - role: specchio_webapp
-
-  post_tasks:
-
-    - name: Reboot the VM
-      reboot:
-
-    - name: Trust desktop links
-      shell: "dbus-launch gio set  {{ item | quote }} metadata::trusted yes"
-      loop:
-        - "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop"
-        - "/home/specchio/Desktop/SPECCHIO Java Client.desktop"
