@@ -64,17 +64,25 @@
 	}
     ],
     "provisioners": [
-	{
-	    "type": "ansible",
-	    "playbook_file": "ansible/playbook.yml",
-	    "ansible_env_vars": [
-		"ANSIBLE_SSH_ARGS='-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o AddKeysToAgent=no'"
-	    ],
-	    "user": "specchio"
+  	{
+  	    "type": "shell",
+  	    "inline": [
+		    "sudo yum install -y epel-release",
+		    "sudo yum install -y ansible"
+	    ]
 	},
 	{
-	    "type": "shell",
-	    "inline": [
+	    "type": "ansible-local",
+	    "playbook_file": "ansible/playbook.yml",
+	    "role_paths": [
+            "ansible/roles/specchio_backup_tool",
+            "ansible/roles/specchio_client",
+            "ansible/roles/specchio_webapp"
+        ]
+  	},
+  	{
+  	    "type": "shell",
+  	    "inline": [
 		"sudo yum install -y bzip2 gcc perl make kernel-devel",
 		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_6.0.0.iso /media",
 		"sudo /media/VBoxLinuxAdditions.run",
