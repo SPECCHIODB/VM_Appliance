@@ -5,12 +5,15 @@
   become_user: root
   become_method: sudo
   vars:
-    # TODO: Extract into Jenkins credentials
-    - specchio_database_password:           'ALSOCHANGEME'
+    - specchio_database_password:           "{{ lookup('env', 'SPECCHIO_PASSWORD') or 'ALSOCHANGEME' }}"
     - specchio_webapp_database_password:    '{{ specchio_database_password }}'
     - specchio_client_admin_password:       '{{ specchio_database_password }}'
 
   pre_tasks:
+
+    - name: Print jenkins secrets
+      debug:
+        msg: "{{ lookup('env','SPECCHIO_KEYSTORE') }} with password {{ lookup('env', 'SPECCHIO_KEYSTORE_PASSWORD') }} and {{ lookup('env', 'SPECCHIO_PASSWORD') }}"
 
     - name: Set hostname
       hostname:
