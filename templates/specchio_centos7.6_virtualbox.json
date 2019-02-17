@@ -8,7 +8,7 @@
 		"type": "virtualbox-iso",
 		"format": "ova",
 	    "boot_command": [
-		    "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+		"<up><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
 	    ],
 	    "shutdown_command": "echo 'specchio'|sudo -S /sbin/halt -h -p",
 	    "boot_wait": "10s",
