@@ -41,10 +41,16 @@ specchio_client_ca_crt_alias: "specchio_trust_ca"
 specchio_client_keystore_file: "{{ specchio_client_directory }}/specchio.keystore"
 specchio_client_keystore_password: "specchio"
 
+# Directory with example database
+specchio_client_dataset_directory: "{{specchio_client_user_desktop_directory}}/Example Data"
+specchio_client_guide_download_url: "https://specchio.winpat.ch/datasets/"
+specchio_client_example_datasets:
+  - SPECCHIO_Example_Dataset_20190303_181647.sql.gz
+
 # Base download path for the SPECCHIO guides
 specchio_client_guide_download_url: "https://github.com/SPECCHIODB/Guides/raw/master"
 specchio_client_guide_directory: "{{specchio_client_user_desktop_directory}}/Guides"
-specchio_client_guide_artifact_list:
+specchio_client_guides:
   - SPECCHIO_VM.pdf
   - SPECCHIO_ReleaseNotes.pdf
   - SPECCHIO_Tutorial.pdf
