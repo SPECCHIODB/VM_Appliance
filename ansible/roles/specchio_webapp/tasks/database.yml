@@ -1,8 +1,19 @@
 ---
 
+# The mariadb-server version in the official CentOS repository was to old to
+# import the database of the "old" virtual machine image (which used MySQL 5.6).
+- name: Install official mariadb repositories
+  yum_repository:
+    name: mariadb
+    description: MariaDB yum repository
+    baseurl: http://yum.mariadb.org/10.3/centos7-amd64
+    gpgcakey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgcheck: yes
+
+
 - name: Install mariadb package
   package:
-    name: mariadb-server
+    name: MariaDB-server
     state: latest
 
 - name: Enable mariadb service
