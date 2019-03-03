@@ -34,6 +34,17 @@
         name: epel-release
         state: latest
 
+    - name: Install yum-cron
+      package:
+        name: yum-cron
+        state: latest
+
+    - name: Enable automatic updates through yum-cron
+      service:
+        name: yum-cron
+        state: started
+        enabled: yes
+
     - name: Add SPECCHIO group
       group:
         name: specchio
