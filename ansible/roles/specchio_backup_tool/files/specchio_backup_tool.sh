@@ -29,7 +29,7 @@ function backup {
 	if [[ $? -eq 0 ]]; then
 	    zenity --notification --text "Backup was successful"
 	else
-	    zenity --notification --text "Backup was failed with return code $?"
+	    zenity --notification --text "Backup failed with return code $?"
 	fi
     else
 	exit 0
@@ -47,8 +47,8 @@ function restore {
 	exit 1
     fi
 
-    zenity --question \
-           --text "Are you sure you want to restore the database?" \
+    zenity --warning \
+           --text "This will delete all the data of the current database (including users and passwords). Are you sure you want to restore the database from the specified dump?" \
            --title "${DIALOG_TITLE}" \
 	   --width 380
 
@@ -58,7 +58,7 @@ function restore {
 	if [[ $? -eq 0 ]]; then
 	    zenity --notification --text "Restore was successful"
 	else
-	    zenity --notification --text "Restore was failed with return code $?"
+	    zenity --notification --text "Restore failed with return code $?"
 	fi
     else
 	exit 0
