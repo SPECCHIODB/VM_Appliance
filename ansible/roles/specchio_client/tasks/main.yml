@@ -59,7 +59,7 @@
 
 - name: Ensure "Example Data" directory exists
   file:
-    path: "{{ specchio_client_data_directory }}/"
+    path: "{{ specchio_client_dataset_directory }}/"
     state: directory
     owner: specchio
     group: specchio

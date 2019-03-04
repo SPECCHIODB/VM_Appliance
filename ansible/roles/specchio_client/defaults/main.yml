@@ -43,8 +43,8 @@ specchio_client_keystore_password: "specchio"
 
 # Directory with example database
 specchio_client_dataset_directory: "{{specchio_client_user_desktop_directory}}/Example Data"
-specchio_client_data_download_url: "https://specchio.winpat.ch/datasets/"
-specchio_client_example_datasets:
+specchio_client_dataset_download_url: "https://specchio.winpat.ch/datasets/"
+specchio_client_datasets:
   - SPECCHIO_Example_Dataset_20190303_181647.sql.gz
 
 # Base download path for the SPECCHIO guides

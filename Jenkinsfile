@@ -18,7 +18,7 @@ pipeline {
 		    string(credentialsId: 'specchio_db_password',
 			   variable: 'SPECCHIO_PASSWORD')])
 		{
-			sh '/usr/local/bin/packer build -timestamp-ui templates/specchio_centos7.6_virtualbox.json'
+			sh '/usr/local/bin/packer build -force -timestamp-ui templates/specchio_centos7.6_virtualbox.json'
 		}
 	    }
 	}
