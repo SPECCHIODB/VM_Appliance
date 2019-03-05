@@ -7,7 +7,7 @@
     name: mariadb
     description: MariaDB yum repository
     baseurl: http://yum.mariadb.org/10.3/centos7-amd64
-    gpgcakey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+    gpgkey: https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
     gpgcheck: yes
 
 
