@@ -24,3 +24,8 @@ Known Issues
 ------------
 * Don't run the build as root user. Ansible will fail with an "You need to be root to perform this
   command.". The root cause for this is unclear.
+
+FAQ
+---
+### How do I add a new PDF guide to the virtual machine?
+To add new guides to the virtual machine simply extend `specchio_client_guides` in the following [file](ansible/roles/specchio_client/defaults/main.yml). (Also ensure the the file with exact same name exists in the [Guide repository](https://github.com/SPECCHIODB/Guides/).
