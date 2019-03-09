@@ -1,0 +1,29 @@
+---
+
+- name: Install zenity
+  package:
+    name: zenity
+    state: latest
+
+- name: Create "Desktop" directory in SPECCHIO user home
+  file:
+    path: /home/specchio/Desktop
+    state: directory
+    owner: specchio
+    group: specchio
+
+- name: Copy SPECCHIO Update Tool script
+  copy:
+    src: specchio_update_tool.sh
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Create link on desktop
+  copy:
+    src: specchio_update_tool.desktop
+    dest: "/home/specchio/Desktop/SPECCHIO Update Tool.desktop"
+    owner: specchio
+    group: specchio
+    mode: 0755

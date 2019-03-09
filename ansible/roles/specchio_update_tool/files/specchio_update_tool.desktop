@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Name=SPECCHIO Update Tool
+Comment=Starts the SPECCHIO Update Tool
+Exec=/usr/local/bin/specchio_update_tool.sh
+Path=/home/specchio/Desktop
+Icon=/usr/share/icons/gnome/256x256/apps/system-software-update.png
+Terminal=false
+Type=Application
