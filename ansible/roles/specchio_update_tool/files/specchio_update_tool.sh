@@ -41,6 +41,11 @@ Are you sure that you want to do this?" \
 	       --title "${DIALOG_TITLE}" \
 	       --width 380
 
+
+if [[ $? -ne 0 ]];
+        exit 1;
+fi
+
 sudo wget --progress=bar:force "${DOWNLOAD_URL}/client/build/distributions/specchio-client.zip" -O /tmp/specchio-client.zip 2>&1 \
 	| zenity \
 		--progress \
@@ -85,7 +90,6 @@ sudo unzip -o -d /tmp/ /tmp/specchio-webapp.zip \
 sudo rm -f "${SPECCHIO_WEBAPP_WAR}"
 sudo mv /tmp/specchio-webapp/webapp-3.3.0.war "${SPECCHIO_WEBAPP_WAR}"
 
-
 sudo /opt/glassfish4/glassfish/bin/asadmin deploy --force "${SPECCHIO_WEBAPP_WAR}" \
 	| zenity \
 		--progress \
@@ -96,7 +100,6 @@ sudo /opt/glassfish4/glassfish/bin/asadmin deploy --force "${SPECCHIO_WEBAPP_WAR
 		--auto-kill \
 	       	--width 380
 
-
 if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
 	zenity \
 		--error \
@@ -105,7 +108,6 @@ if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
 	       	--width 380
 	exit 1
 fi
-
 
 
 zenity \
