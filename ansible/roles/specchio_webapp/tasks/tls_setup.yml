@@ -1,30 +1,14 @@
 ---
 
-- name: Copy SPECCHIO CA certficate
+- name: Copy SPECCHIO PKCS12 keystore
   copy:
-    src: "specchio_ca.crt"
+    src: "{{ item }}"
     dest: "{{ specchio_webapp_glassfish_directory }}"
-
-# NOTE: This is ugly workaround! Since we don't want to store the production keystore in git, we
-# inject it during the CI build from Jenkins. Due to a limitation of the file lookup plugin it's
-# rather complicated to read binary files.
-#
-# https://github.com/ansible/ansible/issues/11594
-#
-# If the env var SPECCHIO_KEYSTORE is set, use its value as the keystore otherwise fallback to the
-# insecure keystore from provided with this role.
-- name: Copy SPECCHIO PKCS12 keystore from env var
-  copy:
-    content: "{{ lookup('env', 'SPECCHIO_KEYSTORE' }}"
-    dest: "{{ specchio_webapp_glassfish_directory }}/specchio_ca.p12"
-  when: "'SPECCHIO_KEYSTORE' in ansible_env"
-
-- name: Copy SPECCHIO PKCS12 keystore from insecure file
-  copy:
-    src: "specchio_ca.p12"
-    dest: "{{ specchio_webapp_glassfish_directory }}"
-  when: "'SPECCHIO_KEYSTORE' not in ansible_env"
-
+    remote_src: yes
+  loop:
+    # NOTE: Those files are supposed to be provided by the playbook.yml
+    - /tmp/specchio_ca.p12
+    - /tmp/specchio_ca.crt
 
 - name: Add SPECCHIO CA cert to cacerts
   java_cert:
@@ -99,3 +83,21 @@
         -keypass {{ specchio_webapp_keystore_keypass }} \
         -storepass {{ specchio_webapp_keystore_storepass }} \
         -file {{ specchio_webapp_server_crt_file }}
+
+- name: Remove SPECCHIO CA private key from glassfish keystore
+  java_cert:
+    pkcs12_path: "{{ specchio_webapp_ca_pkcs12_keystore_file }}"
+    pkcs12_password: "{{ specchio_webapp_ca_pkcs12_keystore_password }}"
+    pkcs12_alias: "{{ specchio_webapp_ca_pkcs12_keystore_alias }}"
+    keystore_path: "{{ specchio_webapp_keystore_file }}"
+    keystore_pass: "{{ specchio_webapp_keystore_storepass }}"
+    cert_alias: "{{ specchio_webapp_ca_crt_alias }}"
+    state: absent
+
+- name: Cleanup CA PKCS12 archives (which contain the private key)
+  file:
+    path: "{{ specchio_webapp_ca_pkcs12_keystore_file }}"
+    state: absent
+  loop:
+    - /tmp/specchio_ca.p12
+    - "{{ specchio_webapp_ca_pkcs12_keystore_file }}"

@@ -7,3 +7,8 @@ packer_*
 
 # Ansible retry files
 *.retry
+
+# Certificate Authority Private Key
+production_ca.p*
+production_ca_password
+production_ca_alias

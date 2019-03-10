@@ -1,0 +1,41 @@
+---
+
+- name: Check if the production keystore has been injected by Jenkins
+  local_action: stat path=tls/production_ca.pkcs12
+  register: production_keystore
+
+
+- name: Slurp production ca into memory
+  block:
+
+    - copy:
+        src: tls/production_ca.pkcs12
+        dest: /tmp/specchio_ca.p12
+
+    - copy:
+        src: tls/production_ca.crt
+        dest: /tmp/specchio_ca.crt
+
+    - set_fact:
+        specchio_webapp_ca_pkcs12_keystore_password: "{{ lookup('file', 'tls/production_ca_password') }}"
+        specchio_webapp_ca_pkcs12_keystore_alias: "{{ lookup('file', 'tls/production_ca_alias') }}"
+
+  when: production_keystore.stat.exists
+
+
+- name: Fallback to insecure CA (which is stored in vcs)
+  block:
+
+    - copy:
+        src: tls/insecure_ca.pkcs12
+        dest: /tmp/specchio_ca.p12
+
+    - copy:
+        src: tls/insecure_ca.crt
+        dest: /tmp/specchio_ca.crt
+
+    - set_fact:
+        specchio_webapp_ca_pkcs12_keystore_password: "changeit"
+        specchio_webapp_ca_pkcs12_keystore_alias: "specchio_trust"
+
+  when: not production_keystore.stat.exists
