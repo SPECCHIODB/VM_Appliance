@@ -16,7 +16,7 @@ pipeline {
 				aliasVariable: 'SPECCHIO_KEYSTORE_ALIAS',
 				passwordVariable: 'SPECCHIO_KEYSTORE_PASSWORD')])
 		{
-		    sh 'echo ${SPECCHIO_KEYSTORE} > ansible/tls/production_ca.pkcs12'
+		    sh 'echo -n -e ${SPECCHIO_KEYSTORE} > ansible/tls/production_ca.pkcs12'
 		    sh 'echo ${SPECCHIO_KEYSTORE_ALIAS} > ansible/tls/production_ca_alias'
 		    sh 'echo ${SPECCHIO_KEYSTORE_PASSWORD} > ansible/tls/production_ca_password'
 		}
