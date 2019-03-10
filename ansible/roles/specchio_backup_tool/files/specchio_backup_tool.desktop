@@ -5,6 +5,6 @@ Name=SPECCHIO Backup Tool
 Comment=Starts the SPECCHIO Backup Tool
 Exec=/usr/local/bin/specchio_backup_tool.sh
 Path=/home/specchio/Desktop
-Icon=/usr/share/icons/gnome/256x256/apps/system-software-update.png
+Icon=/usr/share/icons/gnome/256x256/devices/drive-harddisk.png
 Terminal=false
 Type=Application
