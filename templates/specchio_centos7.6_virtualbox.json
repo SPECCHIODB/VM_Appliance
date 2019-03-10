@@ -74,12 +74,7 @@
 	{
 	    "type": "ansible-local",
 	    "playbook_file": "ansible/playbook.yml",
-	    "role_paths": [
-		"ansible/roles/specchio_backup_tool",
-		"ansible/roles/specchio_update_tool",
-		"ansible/roles/specchio_client",
-		"ansible/roles/specchio_webapp"
-            ]
+	    "playbook_dir": "ansible/"
   	},
   	{
   	    "type": "shell",
