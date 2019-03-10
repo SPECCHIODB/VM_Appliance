@@ -94,6 +94,7 @@
               declare -a LINKS=(
                   "/home/specchio/Desktop/SPECCHIO Java Client.desktop"
                   "/home/specchio/Desktop/SPECCHIO Backup Tool.desktop"
+                  "/home/specchio/Desktop/SPECCHIO Update Tool.desktop"
               )
 
               TRIGGER_RELOAD=0
