@@ -112,6 +112,7 @@
           fi
 
   roles:
+    - role: specchio_update_tool
     - role: specchio_backup_tool
     - role: specchio_client
     - role: specchio_webapp
