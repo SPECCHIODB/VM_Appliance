@@ -9,7 +9,7 @@
   block:
 
     - copy:
-        content: "{{ lookup('file', 'tls/production_ca.pkcs12') | b64decode }}"
+        src: tls/production_ca.pkcs12
         dest: /tmp/specchio_ca.p12
 
     - copy:
