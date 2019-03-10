@@ -42,8 +42,8 @@ Are you sure that you want to do this?" \
 	       --width 380
 
 
-if [[ $? -ne 0 ]];
-        exit 1;
+if [[ $? -ne 0 ]]; then
+        exit 1
 fi
 
 sudo wget --progress=bar:force "${DOWNLOAD_URL}/client/build/distributions/specchio-client.zip" -O /tmp/specchio-client.zip 2>&1 \
