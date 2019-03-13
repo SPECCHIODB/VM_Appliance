@@ -2,7 +2,7 @@
 
 DIALOG_TITLE="SPECCHIO Update Tool"
 # TODO: Switch to official domain, once the DNS records are in place.
-DOWNLOAD_URL="https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/"
+DOWNLOAD_URL="https://jenkins.specchio.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/"
 INSTALL_DIRECTORY="/opt/SPECCHIO"
 SPECCHIO_WEBAPP_WAR="${INSTALL_DIRECTORY}/specchio-webapp/webapp-3.3.0.war"
 SPECCHIO_CLIENT_JAR="${INSTALL_DIRECTORY}/specchio-client/specchio-client.jar"

@@ -40,7 +40,7 @@ specchio_webapp_glassfish_systemd_unit_file: "/lib/systemd/system/glassfish.serv
 specchio_webapp_glassfish_zip_checksum: "sha256:3edc5fc72b8be241a53eae83c22f274479d70e15bdfba7ba2302da5260f23e9d"
 
 # Download url for the specchio-webapp.war
-specchio_webapp_download_url: "https://jenkins.winpat.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/webapp/build/distributions/specchio-webapp.zip"
+specchio_webapp_download_url: "https://jenkins.specchio.ch/job/SPECCHIO/lastSuccessfulBuild/artifact/src/webapp/build/distributions/specchio-webapp.zip"
 
 # Where to extract the zip archive
 specchio_webapp_extraction_directory: "/opt/SPECCHIO"
