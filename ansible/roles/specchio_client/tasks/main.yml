@@ -21,11 +21,6 @@
     dest: "{{ specchio_client_extraction_directory }}"
     remote_src: yes
 
-- name: Copy SPECCHIO CA certificate
-  copy:
-    src: specchio_ca.crt
-    dest: "{{ specchio_client_ca_crt_file }}"
-
 - name: Add SPECCHIO CA cert to keystore
   java_cert:
     cert_path: "{{ specchio_client_ca_crt_file }}"
