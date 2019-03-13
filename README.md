@@ -28,4 +28,17 @@ Known Issues
 FAQ
 ---
 ### How do I add a new PDF guide to the virtual machine?
-To add new guides to the virtual machine simply extend `specchio_client_guides` in the following [file](ansible/roles/specchio_client/defaults/main.yml). (Also ensure the the file with exact same name exists in the [Guide repository](https://github.com/SPECCHIODB/Guides/).
+To add new guides to the virtual machine simply extend `specchio_client_guides` in the following
+[file](ansible/roles/specchio_client/defaults/main.yml). (Also ensure the the file with exact same
+name exists in the [Guide repository](https://github.com/SPECCHIODB/Guides/).
+
+### How do I add a new dataset to the virtual machine?
+Ensure that the dataset is present on the webserver (http://specchio.winpat.ch/datasets/). Then
+simple add a new entry to `specchio_client_datasets` in
+[file](ansible/roles/specchio_client/defaults/main.yml).
+
+### How do I change the password of the specchio system user?
+For this simply adjust the `user` statement in the [kickstart file](http/ks.cfg).
+
+### How do I change the password of the sdb_admin SPECCHIO/database user?
+For this simply adjust the `specchio_database_password` statement in the [playbook.yml](ansible/playbook.yml).
