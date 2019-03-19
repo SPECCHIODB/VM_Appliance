@@ -33,7 +33,7 @@ To add new guides to the virtual machine simply extend `specchio_client_guides` 
 name exists in the [Guide repository](https://github.com/SPECCHIODB/Guides/).
 
 ### How do I add a new dataset to the virtual machine?
-Ensure that the dataset is present on the webserver (http://specchio.winpat.ch/datasets/). Then
+Ensure that the dataset is present on the webserver (https://specchio.ch/datasets/). Then
 simple add a new entry to `specchio_client_datasets` in
 [file](ansible/roles/specchio_client/defaults/main.yml).
 
