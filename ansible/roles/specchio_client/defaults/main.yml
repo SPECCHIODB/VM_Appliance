@@ -45,7 +45,7 @@ specchio_client_keystore_password: "specchio"
 specchio_client_dataset_directory: "{{specchio_client_user_desktop_directory}}/Example Data"
 specchio_client_dataset_download_url: "https://specchio.ch/datasets/"
 specchio_client_datasets:
-  - SPECCHIO_Example_Dataset_20190303_181647.sql.gz
+  - SPECCHIO_20190320_125438_V3.34_TutorialData.sql.gz
 
 # Base download path for the SPECCHIO guides
 specchio_client_guide_download_url: "https://github.com/SPECCHIODB/Guides/raw/master"
