@@ -73,6 +73,16 @@
     - name: Change size of nautilus icons
       shell: dbus-launch gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small'
 
+    - name: Install MySQL workbench repository (for MySQL workbench)
+      yum:
+        name: https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm
+        state: present
+
+    - name: Install MySQL workbench
+      package:
+        name: mysql-workbench
+        state: latest
+
     - name: Install debugging and developments utils
       package:
         name: "{{ item }}"
