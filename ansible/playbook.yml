@@ -125,3 +125,12 @@
     - role: specchio_backup_tool
     - role: specchio_client
     - role: specchio_webapp
+  
+  post_tasks:
+    - name: Cleanup sensitive files
+      file:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        /tmp/specchio_ca.p12
+        /tmp/specchio_ca.crt
