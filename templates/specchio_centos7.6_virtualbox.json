@@ -68,7 +68,8 @@
   	    "type": "shell",
   	    "inline": [
 		    "sudo yum install -y epel-release",
-		    "sudo yum install -y ansible"
+		    "sudo yum install -y ansible",
+		    "sudo sed -i 's/#pipelining = False/pipelining = True/' /etc/ansible/ansible.cfg"
 	    ]
 	},
 	{
