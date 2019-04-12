@@ -38,7 +38,7 @@
   mysql_db:
     name: all
     state: import
-    target: "{{ specchio_webapp_sql_directory }}/SPECCHIO_V3.2.0.sql"
+    target: "{{ specchio_webapp_sql_directory }}/SPECCHIO_V3.3.4.sql"
   when: dbstatus.rc == 1
 
 # Instead of using the mysql_user module to manage the database users, we use the existing SQL
