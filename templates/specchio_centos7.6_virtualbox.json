@@ -1,7 +1,7 @@
 {
     "variables": {
 	    "bridge_adapter": "eno1",
-	    "vbox_version": "6.0.0"
+	    "vbox_version": "6.1.0"
     },
     "builders": [
 	{
@@ -21,7 +21,7 @@
 	    "disk_size": 102400,
 	    "guest_additions_path": "VBoxGuestAdditions_{{user `vbox_version`}}.iso",
 	    "guest_additions_url": "https://download.virtualbox.org/virtualbox/{{user `vbox_version`}}/VBoxGuestAdditions_{{user `vbox_version`}}.iso",
-	    "guest_additions_sha256": "169efc28d82cbf2d0b0156454cc290e2fae49534b6d4adf3bac06e0fefba8fa5",
+	    "guest_additions_sha256": "5a0d2512f78aac49e6ab9e3514e6d81bc4e8f00df2101ed2ba0bb68d56b21136",
 	    "virtualbox_version_file": ".vbox_version",
 	    "vm_name": "specchio-centos-7.6-vbox-x86_64",
 	    "vboxmanage": [
