@@ -11,7 +11,7 @@
 		"<up><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
 	    ],
 	    "shutdown_command": "echo 'specchio'|sudo -S /sbin/halt -h -p",
-	    "boot_wait": "10s",
+	    "boot_wait": "30s",
 	    "http_directory": "http",
 	    "iso_urls": ["https://pkg.adfinis-sygroup.ch/centos/7.6.1810/isos/x86_64/CentOS-7-x86_64-Everything-1810.iso"],
 	    "iso_checksum_type": "sha256",
