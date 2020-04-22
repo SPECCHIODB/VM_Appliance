@@ -81,7 +81,7 @@
   	    "type": "shell",
   	    "inline": [
 		"sudo yum install -y bzip2 gcc perl make kernel-devel",
-		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_6.0.0.iso /media",
+		"sudo mount -t iso9660 -o loop /home/specchio/VBoxGuestAdditions_{{user `vbox_version`}}.iso /media",
 		"sudo /media/VBoxLinuxAdditions.run",
 		"sudo umount /media"
 	    ]
