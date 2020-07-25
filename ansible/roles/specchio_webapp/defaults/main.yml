@@ -4,7 +4,7 @@
 specchio_webapp_glassfish_mysql_java_connector_tarball_name: "mysql-connector-java-5.1.47.tar.gz"
 
 # Download link of mysql java connector
-specchio_webapp_glassfish_mysql_java_connector_download_url: "http://cdn.mysql.com/Downloads/Connector-J/{{specchio_webapp_glassfish_mysql_java_connector_tarball_name}}"
+specchio_webapp_glassfish_mysql_java_connector_download_url: "https://cdn.mysql.com/Downloads/Connector-J/{{specchio_webapp_glassfish_mysql_java_connector_tarball_name}}"
 
 # Checksum of the mysql java connector tarball
 specchio_webapp_glassfish_mysql_java_connector_tarball_checksum: "sha256:4ae79214b2f1b5fc600fc867a4d27dcfcb467813c38bf3eee87789ba400349c6"
