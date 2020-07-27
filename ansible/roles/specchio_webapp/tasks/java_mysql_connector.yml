@@ -1,19 +1,26 @@
 ---
 
-- name: Download mysql java connector tarball archive
-  get_url:
-    url: "{{ specchio_webapp_glassfish_mysql_java_connector_download_url }}"
-    dest: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
-    checksum: "{{ specchio_webapp_glassfish_mysql_java_connector_tarball_checksum }}"
+#- name: Download mysql java connector tarball archive
+#  get_url:
+#    url: "{{ specchio_webapp_glassfish_mysql_java_connector_download_url }}"
+#    dest: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
+#    checksum: "{{ specchio_webapp_glassfish_mysql_java_connector_tarball_checksum }}"
 
-- name: Unzip glassfish mysql java connector
-  unarchive:
-    remote_src: yes
-    src: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
-    dest: /opt/
+#- name: Unzip glassfish mysql java connector
+#  unarchive:
+#    remote_src: yes
+#    src: "/tmp/{{ specchio_webapp_glassfish_mysql_java_connector_tarball_name }}"
+#    dest: /opt/
 
+#- name: Copy mysql java connector to glassfish library directory
+#  copy:
+#    src: "/opt/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar"
+#    dest: "{{ specchio_webapp_glassfish_domain_external_libraries_directory }}"
+#    remote_src: yes
+    
 - name: Copy mysql java connector to glassfish library directory
   copy:
-    src: "/opt/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47-bin.jar"
+    src: "connectors/mysql-connector-java-5.1.47-bin.jar"
     dest: "{{ specchio_webapp_glassfish_domain_external_libraries_directory }}"
     remote_src: yes
+
