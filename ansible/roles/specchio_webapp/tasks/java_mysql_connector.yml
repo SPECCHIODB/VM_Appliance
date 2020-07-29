@@ -20,7 +20,7 @@
     
 - name: Copy mysql java connector to glassfish library directory
   copy:
-    src: "/var/lib/jenkins/connectors/mysql-connector-java-5.1.47-bin.jar"
+    src: mysql-connector-java-5.1.47-bin.jar
     dest: "{{ specchio_webapp_glassfish_domain_external_libraries_directory }}"
 #    remote_src: yes
 
