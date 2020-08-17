@@ -45,7 +45,7 @@
 
     - name: Add SPECCHIO group
       group:
-        name: specchio---
+        name: specchio
 
 - name: Install OpenJDK
   package:
