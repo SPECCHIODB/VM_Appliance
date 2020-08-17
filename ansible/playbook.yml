@@ -102,13 +102,13 @@
     group: specchio
     mode: 0700
     
-- name: Copy shell script to run client
-  copy:
-    src: run_specchio_client.sh
-    dest: "{{specchio_client_shell_file}}"
-    owner: specchio
-    group: specchio
-    mode: 0755    
+#- name: Copy shell script to run client
+#  copy:
+#    src: run_specchio_client.sh
+#    dest: "{{specchio_client_shell_file}}"
+#    owner: specchio
+#    group: specchio
+#    mode: 0755    
 
 - name: Ensure "Example Data" directory exists
   file:
