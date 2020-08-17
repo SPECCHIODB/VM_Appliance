@@ -2,7 +2,7 @@
 
 - name: Install OpenJDK
   package:
-    name: java-1.8.0-openjdk
+    name: java-1.8.0-openjdk    
 
 - name: Install unzip
   package:
@@ -50,6 +50,14 @@
     owner: specchio
     group: specchio
     mode: 0700
+    
+- name: Copy shell script to run client
+  copy:
+    src: run_specchio_client.sh
+    dest: "{{specchio_client_shell_file}}"
+    owner: specchio
+    group: specchio
+    mode: 0755        
 
 - name: Ensure "Example Data" directory exists
   file:
