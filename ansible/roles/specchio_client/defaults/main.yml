@@ -12,6 +12,9 @@ specchio_client_directory: "{{ specchio_client_extraction_directory }}/specchio-
 # Destination of the db_config.txt file (containing login credentials)
 specchio_client_db_config_file: "{{ specchio_client_directory }}/db_config.txt"
 
+# Destination of the shell file to run client
+specchio_client_shell_file: "{{ specchio_client_directory }}/run_specchio_client.sh"
+
 # Name of the SPECCHIO user.
 specchio_client_user: "specchio"
 

@@ -45,7 +45,97 @@
 
     - name: Add SPECCHIO group
       group:
-        name: specchio
+        name: specchio---
+
+- name: Install OpenJDK
+  package:
+    name: java-1.8.0-openjdk-1.8.0.171-8.b10.el6_9
+    #java_minor_version: 212
+    #java_version: '8u212'
+    #java_minor_version: 0.212
+    #state: latest
+
+- name: Install unzip
+  package:
+    name: unzip
+    state: latest
+
+- name: Create SPECCHIO client extraction directory
+  file:
+    path: "{{ specchio_client_extraction_directory }}"
+    state: directory
+
+- name: Download SPECCHIO client zip
+  unarchive:
+    src: "{{ specchio_client_download_url }}"
+    dest: "{{ specchio_client_extraction_directory }}"
+    remote_src: yes
+
+- name: Add SPECCHIO CA cert to keystore
+  java_cert:
+    cert_path: "{{ specchio_client_ca_crt_file }}"
+    cert_alias: "{{ specchio_client_ca_crt_alias }}"
+    keystore_path: "{{ specchio_client_keystore_file }}"
+    keystore_pass: "{{ specchio_client_keystore_password }}"
+    state: present
+
+- name: Create "Desktop" directory in SPECCHIO user home
+  file:
+    path: "{{ specchio_client_user_desktop_directory }}/"
+    state: directory
+    owner: specchio
+    group: specchio
+
+- name: Symlink SPECCHIO client to desktop
+  template:
+    src: specchio_client.desktop.j2
+    dest: "{{ specchio_client_desktop_link }}"
+    owner: specchio
+    group: specchio
+    mode: 0755
+
+- name: Create db_config.txt
+  template:
+    src: db_config.txt.j2
+    dest: "{{specchio_client_db_config_file}}"
+    owner: specchio
+    group: specchio
+    mode: 0700
+    
+- name: Copy shell script to run client
+  copy:
+    src: run_specchio_client.sh
+    dest: "{{specchio_client_shell_file}}"
+    owner: specchio
+    group: specchio
+    mode: 0755    
+
+- name: Ensure "Example Data" directory exists
+  file:
+    path: "{{ specchio_client_dataset_directory }}/"
+    state: directory
+    owner: specchio
+    group: specchio
+
+- name: Download example datasets to Desktop
+  get_url:
+    url: "{{ specchio_client_dataset_download_url }}/{{ item }}"
+    dest: "{{ specchio_client_dataset_directory }}/"
+  loop: "{{ specchio_client_datasets }}"
+
+- name: Ensure "Guides" directory exists
+  file:
+    path: "{{ specchio_client_guide_directory }}/"
+    state: directory
+    owner: specchio
+    group: specchio
+
+- name: Download SPECCHIO guides
+  get_url:
+    url: "{{ specchio_client_guide_download_url }}/{{ item }}"
+    dest: "{{ specchio_client_guide_directory }}/"
+  loop: "{{ specchio_client_guides }}"
+
         state: present
 
     - name: Add SPECCHIO user

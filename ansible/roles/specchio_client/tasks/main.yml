@@ -2,11 +2,7 @@
 
 - name: Install OpenJDK
   package:
-    name: java-1.8.0-openjdk-1.8.0.171-8.b10.el6_9
-    #java_minor_version: 212
-    #java_version: '8u212'
-    #java_minor_version: 0.212
-    #state: latest
+    name: java-1.8.0-openjdk
 
 - name: Install unzip
   package:
