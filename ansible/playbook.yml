@@ -16,7 +16,15 @@
     - name: Set hostname
       hostname:
         name: specchio
-
+        
+    - name: Generate /etc/hosts file
+      copy:
+        src=hosts
+        dest=/etc/hosts     
+        owner: root
+        group: root
+        mode: 0644
+        
     - name: Disable SELinux
       selinux:
         state: disabled
