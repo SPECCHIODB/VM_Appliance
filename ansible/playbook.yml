@@ -83,8 +83,8 @@
 
     - name: Install MySQL workbench repository (for MySQL workbench)
       yum:
-        name: https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm
-        state: present
+        name: mysql80-community-release.noarch
+        state: latest
 
     - name: Install MySQL workbench
       package:
