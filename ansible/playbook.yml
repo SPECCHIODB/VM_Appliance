@@ -81,10 +81,11 @@
     - name: Change size of nautilus icons
       shell: dbus-launch gsettings set org.gnome.nautilus.icon-view default-zoom-level 'small'
 
-    - name: Install MySQL workbench repository (for MySQL workbench)
+    # Needed to remove the redirection (see https://serverfault.com/questions/1121140/i-cannot-download-mysql-connectorj-with-ansible-anymore?newreg=dc7103cad2fc46a9ac05db7931a339c6)
+    - name: Install MySQL repository (for MySQL workbench)
       yum:
-        name: mysql80-community-release.noarch
-        state: latest
+        name: "https://repo.mysql.com//mysql80-community-release-el7-2.noarch.rpm"
+        state: present
 
     - name: Install MySQL workbench
       package:
